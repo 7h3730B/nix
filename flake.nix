@@ -22,8 +22,6 @@
     in 
     {
 
-      nixos.config.allowUnfree = true;     
-
       nixosSystem =
       { system ? "x86_64-linux"
       , configuration ? {}
