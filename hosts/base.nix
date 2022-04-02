@@ -1,4 +1,4 @@
-{ self, pkgs, home, pkgs, unstable, nixos, ... }: {
+{ self, pkgs, home, unstable, nixos, ... }: {
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''

@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
-  import = [
+{ pkgs, dotfiles, ... }: {
+  imports = [
     ../../profiles/i3.nix
   ];
-  xserver.windowManager.i3.configFile."i3/config".source =
+  services.xserver.windowManager.i3.configFile =
     "${dotfiles}/i3/.config/i3/config";
 }

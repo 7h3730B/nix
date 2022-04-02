@@ -1,5 +1,5 @@
 { pkgs, ...}: {
-  import = [
+  imports = [
     ../i3/default.nix
   ];
 

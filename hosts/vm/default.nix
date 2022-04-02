@@ -20,6 +20,7 @@ in
 
       ../../profiles/xrdp.nix
       ../../profiles/i3.nix
+      (../../home + "/${username}")
     ];
 
   boot = {
@@ -48,15 +49,17 @@ in
   hardware.pulseaudio.enable = true;
 
   services = {
-    enable = true;
-    extraConfig = ''
-      DNS=1.1.1.1
-    '';
+    resolved = {
+      enable = true;
+      extraConfig = ''
+        DNS=1.1.1.1
+      '';
+    };
   };
 
   security.protectKernelImage = true;
 
-  nix.trustedUsers = nix.trustedUsers ++ [ username ];
+  nix.trustedUsers = [ "root" username ];
 
   users.users.${username} = {
     description = name;
@@ -67,6 +70,4 @@ in
     uid = 1000;
     home = "/home/${username}";
   };
-
-  home-manager.users.${username} = import ../../home/${username};
 }

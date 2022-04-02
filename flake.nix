@@ -14,32 +14,39 @@
   outputs = { self, unstable, nixos, home, dotfiles, ... }@inputs: 
     with builtins;
     let
+      inherit (nixos) lib;
+
+      extraModules = [
+        home.nixosModules.home-manager
+      ];
     in 
     {
       nixosSystem =
       { system ? "x86_64-linux"
       , configuration ? {}
       , modules ? []
+      , extraModules ? []
       , specialArgs ? {}
       , ...
       }:
         lib.nixosSystem {
           inherit system specialArgs;
 
-          modules = [ configuration ] ++ modules;
+          modules = [ configuration ] ++ modules ++ extraModules;
       };
       
       nixosHosts = {
         "nixos-pen-vm" = {
           configuration = ./hosts/vm;
           specialArgs = { inherit (inputs) unstable nixos home dotfiles; };
+          extraModules = extraModules;
         };
       };
 
       overlay = import ./pkgs;
 
       nixosConfigurations = {
-        "nix-pen-vm" = self.nixosSystem self.nixosHosts."nixos-pen-vm";
+        "nixos-pen-vm" = self.nixosSystem self.nixosHosts."nixos-pen-vm";
       };
     };
 }
