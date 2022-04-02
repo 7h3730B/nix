@@ -21,19 +21,33 @@
       ];
     in 
     {
+      overlay = import ./pkgs;
+
+      importPkgs = pkgs: overlays: system:
+        import pkgs {
+          inherit system overlays;
+          overlay = [ self.overlay ] ++ overlays;
+          config = {
+            allowUnfree = true;
+          };
+        };
 
       nixosSystem =
       { system ? "x86_64-linux"
       , configuration ? {}
       , modules ? []
+      , overlays ? [ self.overlay ]
       , extraModules ? []
       , specialArgs ? {}
       , ...
       }:
+      let
+        pkgs = self.importPkgs nixos overlays system;
+      in
         lib.nixosSystem {
           inherit system specialArgs;
-
-          modules = [ configuration ] ++ modules ++ extraModules;
+          
+          modules = [ configuration { nixpkgs = { inherit pkgs; }; } ] ++ modules ++ extraModules;
       };
       
       nixosHosts = {
@@ -43,8 +57,6 @@
           extraModules = extraModules;
         };
       };
-
-      overlay = import ./pkgs;
 
       nixosConfigurations = {
         "nixos-pen-vm" = self.nixosSystem self.nixosHosts."nixos-pen-vm";
