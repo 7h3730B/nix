@@ -4,6 +4,7 @@
   inputs = {
     unstable.url = "github:NixOS/nixpkgs/master";
     nixos.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos.config.allowUnfree = true;
 
     home.url = "github:nix-community/home-manager";
 
