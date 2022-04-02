@@ -1,3 +1,3 @@
-final: with prev: {
-  ghidra = callPackage ./ghidra.nix { };
+final: prev: {
+  ghidra = prev.callPackage ./ghidra.nix { };
 }

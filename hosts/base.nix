@@ -44,7 +44,7 @@
 
   fonts = {
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "Firacode" "Noto" ]; })
+      (nerdfonts.override { fonts = [ "FiraCode" "Noto" ]; })
       noto-fonts
       noto-fonts-emoji
       fira-code
