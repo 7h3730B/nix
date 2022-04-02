@@ -24,7 +24,8 @@
       , ...
       }:
         lib.nixosSystem {
-          inherit system specialArgs
+          inherit system specialArgs;
+
           modules = [ configuration ] ++ modules;
       };
       
