@@ -19,7 +19,6 @@ in
       ../base.nix
 
       ../../profiles/xrdp.nix
-      ../../profiles/i3.nix
       (../../home + "/${username}")
     ];
 

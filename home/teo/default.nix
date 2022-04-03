@@ -12,7 +12,7 @@
     imports = [];
 
     home.packages = with pkgs; [
-      ghidra
+      # ghidra
     ];
   };
 }
