@@ -1,7 +1,5 @@
 { pkgs, ...}: {
-  imports = [
-    ../i3/default.nix
-  ];
+  imports = [];
 
   home-manager = {
     useGlobalPkgs = true;
@@ -9,7 +7,12 @@
   };
 
   home-manager.users.teo = {
-    imports = [];
+    imports = [
+      ../programs/i3.nix
+      ../programs/tmux.nix
+      ../programs/zsh.nix
+      ../programs/alacritty.nix
+    ];
 
     home.packages = with pkgs; [
       # ghidra

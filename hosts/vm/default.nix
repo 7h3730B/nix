@@ -50,8 +50,10 @@ in
   services = {
     resolved = {
       enable = true;
+      dnssec = "true";
+      fallbackDNS = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
       extraConfig = ''
-        DNS=1.1.1.1
+        DNSOverTLS=yes
       '';
     };
   };

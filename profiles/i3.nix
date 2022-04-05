@@ -13,6 +13,7 @@
             i3status
             i3lock
             rofi
+            polybar
           ];
         };
       };
