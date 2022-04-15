@@ -3,7 +3,7 @@
 
   programs = {
     zsh.enable = true;
-    fzf.enable = {
+    fzf = {
       enable = true;
       enableZshIntegration = true;
     }; 
