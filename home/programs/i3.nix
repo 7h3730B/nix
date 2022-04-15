@@ -31,7 +31,7 @@
     };
     polybar = {
       enable = true;
-      script = "polybar &";
+      script = "";
     };
   };
 }
