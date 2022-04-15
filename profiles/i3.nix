@@ -18,5 +18,16 @@
         };
       };
     };
+    picom = {
+      enable = true;
+    };
+    dunst = {
+      enable = true;
+      iconTheme = {
+        name = "Papirus";
+        package = pkgs.papirus-icon-theme;
+        size = "48x48";
+      };
+    };
   };
 }
