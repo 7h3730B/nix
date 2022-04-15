@@ -1,7 +1,6 @@
 { pkgs, ...}: {
   # System imports
-  imports = [
-  ];
+  imports = [];
 
   home-manager = {
     useGlobalPkgs = true;

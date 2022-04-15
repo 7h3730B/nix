@@ -8,10 +8,22 @@
     [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sd_mod" "sr_mod" ];
+    initrd.kernelModules = [ "dm-snapshot" ];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
+
+    kernelPackages = pkgs.linuxPackages_latest;
+    tmpOnTmpfs = true;
+
+    initrd.luks.devices = {
+      crypt = {
+        device = "/dev/sda2";
+        preLVM = true;
+      };
+    };
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";

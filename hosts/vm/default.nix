@@ -19,6 +19,7 @@ in
       ../base.nix
 
       ../../profiles/xrdp.nix
+      ../../profiles/x11.nix
       (../../home + "/${username}")
     ];
 
@@ -31,12 +32,6 @@ in
         efiSupport = true;
         enableCryptodisk = true;
         device = "nodev";
-      };
-    };
-    initrd.luks.devices = {
-      crypt = {
-        device = "/dev/sda2";
-        preLVM = true;
       };
     };
   };
