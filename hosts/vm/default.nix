@@ -51,7 +51,7 @@ in
     resolved = {
       enable = true;
       dnssec = "true";
-      fallbackDNS = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
       extraConfig = ''
         DNSOverTLS=yes
       '';
