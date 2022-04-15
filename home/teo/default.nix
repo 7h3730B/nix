@@ -2,7 +2,6 @@
   # System imports
   imports = [
     ../programs/i3.nix
-    ../programs/zsh.nix
   ];
 
   home-manager = {
@@ -15,6 +14,7 @@
     imports = [
       ../programs/tmux.nix
       ../programs/alacritty.nix
+      ../programs/zsh.nix
     ];
 
     home.packages = with pkgs; [
