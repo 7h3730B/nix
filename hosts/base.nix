@@ -74,9 +74,6 @@
     pulsemixer
     jq
     git
-    vim
-    delta
-    exa
 
     man-db
     man-pages
