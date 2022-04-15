@@ -1,16 +1,19 @@
 { pkgs, ...}: {
-  imports = [];
+  # System imports
+  imports = [
+    ../programs/i3.nix
+    ../programs/zsh.nix
+  ];
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
   };
 
+  # home imports
   home-manager.users.teo = {
     imports = [
-      ../programs/i3.nix
       ../programs/tmux.nix
-      ../programs/zsh.nix
       ../programs/alacritty.nix
     ];
 
