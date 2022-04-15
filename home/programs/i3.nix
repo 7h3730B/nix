@@ -13,6 +13,8 @@
           i3lock
           rofi
           polybar
+          dunst
+          picom
         ];
       };
     };

@@ -1,7 +1,6 @@
 { pkgs, ...}: {
   # System imports
   imports = [
-    ../programs/i3.nix
   ];
 
   home-manager = {
@@ -14,6 +13,7 @@
     imports = [
       ../programs/tmux.nix
       ../programs/alacritty.nix
+      ../programs/i3.nix
       ../programs/zsh.nix
     ];
 
