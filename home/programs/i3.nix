@@ -15,9 +15,6 @@
     rofi = {
       enable = true;
     };
-    dmneu = {
-      enable = true;
-    };
   };
 
   services = {
