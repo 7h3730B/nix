@@ -1,4 +1,12 @@
-{ self, pkgs, home, unstable, nixos, ... }: {
+{ pkgs
+, unstable
+, nixos
+, home
+, username
+, colorscheme
+, palette
+, configDir
+, ... }: {
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -40,11 +48,11 @@
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Amsterdam";
 
   fonts = {
     fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "Noto" ]; })
+      (nerdfonts.override { fonts = [ "FiraCode" "Noto" "Mononoki" "JetBrainsMono" "Iosevka" "RobotoMono" ]; })
       noto-fonts
       noto-fonts-emoji
       fira-code
@@ -67,13 +75,13 @@
     wget
 
     coreutils-full
-    tldr
-    fd
-    fzf
     file
     pulsemixer
-    jq
     git
+    vim
+
+    pavucontrol
+    helvum
 
     man-db
     man-pages

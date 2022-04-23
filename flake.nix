@@ -6,37 +6,37 @@
     nixos.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home.url = "github:nix-community/home-manager";
-
-    dotfiles.url = "github:7h3730B/.dotfiles/master";
-    dotfiles.flake = false;
   };
 
-  outputs = { self, unstable, nixos, home, dotfiles, ... }@inputs: 
+  outputs = { self, unstable, nixos, home, ... }@inputs: 
     with builtins;
     let
       inherit (nixos) lib;
 
+      username = "teo";
+      colorscheme = "tokyonight.nix";
+      configDir = ./configs;
+
+      overlay = import ./pkgs;
+      palette = import (./palettes + "/${colorscheme}.nix");
+
       extraModules = [
         home.nixosModules.home-manager
       ];
-    in 
-    {
-      overlay = import ./pkgs;
 
-      importPkgs = pkgs: overlays: system:
-        import pkgs {
-          inherit system overlays;
-          overlay = [ self.overlay ] ++ overlays;
-          config = {
-            allowUnfree = true;
-          };
+      importPkgs = pkgs: overlays: system: import pkgs {
+        inherit system overlays;
+        overlay = [ overlay ] ++ overlays;
+        config = {
+          allowUnfree = true;
         };
+      };
 
       nixosSystem =
       { system ? "x86_64-linux"
       , configuration ? {}
       , modules ? []
-      , overlays ? [ self.overlay ]
+      , overlays ? []
       , extraModules ? []
       , specialArgs ? {}
       , ...
@@ -45,21 +45,26 @@
         pkgs = self.importPkgs unstable overlays system;
       in
         lib.nixosSystem {
-          inherit system specialArgs;
-          
+          inherit system;
           modules = [ configuration { nixpkgs = { inherit pkgs; }; } ] ++ modules ++ extraModules;
+          specialArgs = {
+            inherit 
+              (inputs)
+              unstable
+              nixos
+              home
+              username
+              colorscheme
+              palette
+              configDir;
+          } // specialArgs;
       };
-      
-      nixosHosts = {
-        "nixos-pen-vm" = {
+    in 
+    {
+      nixosConfigurations."nixos-vm" = {
+        self.nixosSystem {
           configuration = ./hosts/vm;
-          specialArgs = { inherit (inputs) unstable nixos home dotfiles; };
-          extraModules = extraModules;
         };
       };
-
-      nixosConfigurations = {
-        "nixos-pen-vm" = self.nixosSystem self.nixosHosts."nixos-pen-vm";
-      };
-    };
+    }
 }

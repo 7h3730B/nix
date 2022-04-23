@@ -1,26 +1,23 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ self, pkgs, unstable, nixos, home, lib, system, ... }:
-with builtins;
+{ pkgs
+, unstable
+, nixos
+, home
+, username
+, colorscheme
+, palette
+, configDir
+, ... }:
 let
-  name = "7h3730b";
-  username = "teo";
-  hostname = "nixos-pen-vm";
+  hostname = "nixos-vm";
 in
 {
   system.stateVersion = "21.11";
-  networking.hostName = "${hostname}";
 
   imports =
     [
       ./hardware-configuration.nix
+      ./home.nix
       ../base.nix
-
-      ../../profiles/xrdp.nix
-      ../../profiles/x11.nix
-      (../../home + "/${username}")
     ];
 
   boot = {
@@ -37,10 +34,18 @@ in
   };
 
   networking.useDHCP = false;
+  networking.hostName = "${hostname}";
   networking.interfaces.ens18.useDHCP = true;
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  sound.enable = false;
+
+  services.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   services = {
     resolved = {
@@ -57,12 +62,13 @@ in
 
   nix.trustedUsers = [ "root" username ];
 
-  users.users.${username} = {
-    description = name;
+  users.users."${username}" = {
+    description = username;
     isNormalUser = true;
     group = "users";
     extraGroups = [ "audio" "disk" "docker" "networkmanager" "video" "wheel" ];
     createHome = true;
+    shell = pkgs.zsh;
     uid = 1000;
     home = "/home/${username}";
   };
