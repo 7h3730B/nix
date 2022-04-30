@@ -17,7 +17,7 @@
       colorscheme = "tokyonight";
       configDir = ./configs;
 
-      overlay = import ./pkgs;
+      overlay = import ./pkgs {};
       palette = import (./palettes + "/${colorscheme}.nix");
 
       extraModules = [
