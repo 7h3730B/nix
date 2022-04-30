@@ -7,6 +7,6 @@
   fade = true;
   fadeDelta = 3;
 
-  activOpacity = "0.9";
+  activeOpacity = "0.9";
   inactiveOpacity = "0.8";
 }
