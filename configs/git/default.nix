@@ -1,6 +1,6 @@
 {}: {
   userName = "7h3730b";
-  userEmail = "teo.sb@protonmail.com";
+	userEmail = "56200898+7h3730B@users.noreply.github.com";
 
   aliases = {
     st = "status";

@@ -18,6 +18,8 @@ in
       ./hardware-configuration.nix
       ./home.nix
       ../base.nix
+
+      ../../modules/tailscale.nix
     ];
 
   boot = {
