@@ -90,17 +90,17 @@ in
     # };
 
     # Desktop
-    programs.sxhkd = {
+    services.sxhkd = {
       enable = true;
     } // (import "${configDir}/sxhkd") {
       inherit configDir;
     };
 
-    programs.picom = {
+    services.picom = {
       enable = true;
     } // (import "${configDir}/picom");
 
-    programs.dunst = {
+    services.dunst = {
       enable = true;
     } // (import "${configDir}/dunst") {
       inherit pkgs palette;

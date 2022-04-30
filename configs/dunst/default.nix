@@ -7,7 +7,7 @@
     size = "48x48";
   };
 
-  setting = {
+  settings = {
     global = {
       seperator_height = "1";
       seperator_color = palette.bright.black;
