@@ -9,7 +9,6 @@
   };
 
   outputs = { self, unstable, nixos, home, ... }@inputs: 
-    with builtins;
     let
       inherit (nixos) lib;
 
@@ -42,7 +41,7 @@
       , ...
       }:
       let
-        pkgs = importPkgs nixos overlays system;
+        pkgs = (importPkgs nixos overlays system);
       in
         lib.nixosSystem {
           inherit system;
