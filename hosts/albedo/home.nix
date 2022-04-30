@@ -109,7 +109,7 @@ in
     # Editors
     programs.vscode = {
       enable = true;
-    } // (import "${configDir}/vscode}") {
+    } // (import "${configDir}/vscode") {
       inherit pkgs palette;
     };
 
