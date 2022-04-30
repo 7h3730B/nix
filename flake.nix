@@ -43,6 +43,7 @@
       }:
       let
         pkgs = importPkgs nixos overlays system;
+        inherit username colorscheme configDir palette;
       in
         lib.nixosSystem {
           inherit system;
