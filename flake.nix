@@ -14,7 +14,7 @@
       inherit (nixos) lib;
 
       username = "teo";
-      colorscheme = "tokyonight.nix";
+      colorscheme = "tokyonight";
       configDir = ./configs;
 
       overlay = import ./pkgs;
