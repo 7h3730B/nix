@@ -8,7 +8,7 @@
 , configDir
 , ... }:
 let
-  hostname = "albedo";
+  hostname = "tmp";
 in
 {
   system.stateVersion = "21.11";

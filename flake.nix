@@ -64,5 +64,9 @@
       nixosConfigurations."albedo" = nixosSystem {
           configuration = ./hosts/albedo;
         };
+
+      nixosConfigurations."tmp" = nixosSystem {
+          configuration = ./hosts/tmp;
+        };
     };
 }
