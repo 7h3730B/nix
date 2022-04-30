@@ -70,18 +70,14 @@
     unrar
     unzip
     zip
+    tar
 
     curl
-    wget
 
     coreutils-full
     file
-    pulsemixer
     git
     vim
-
-    pavucontrol
-    helvum
 
     man-db
     man-pages

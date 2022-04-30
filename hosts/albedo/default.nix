@@ -49,6 +49,10 @@ in
     pulse.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    helvum
+  ];
+
   services = {
     resolved = {
       enable = true;
