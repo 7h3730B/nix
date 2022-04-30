@@ -36,7 +36,7 @@
       , configuration ? {}
       , modules ? []
       , overlays ? []
-      , extraModules ? []
+      , extraModules ? [ extraModules ]
       , specialArgs ? {}
       , ...
       }:
