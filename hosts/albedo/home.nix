@@ -119,19 +119,20 @@ in
     } // (import "${configDir}/vim") {
       inherit pkgs palette;
     };
-  };
 
-  xsession = {
-    enable = true;
-
-    windowManager.bspwm = {
+    xsession = {
       enable = true;
-    } // (import "${configDir}/bspwm") {
-      inherit pkgs colorscheme palette;
-    };
+      numlock.enable = true;
 
-    startupPrograms = [
-      "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
-    ];
+      windowManager.bspwm = {
+        enable = true;
+      } // (import "${configDir}/bspwm") {
+        inherit pkgs colorscheme palette;
+      };
+
+      startupPrograms = [
+        "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
+      ];
+    };
   };
 }
