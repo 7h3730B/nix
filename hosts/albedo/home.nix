@@ -45,7 +45,7 @@ in
     programs.alacritty = {
       enable = true;
     } // (import "${configDir}/alacritty") {
-      inherit pkgs lib palette;
+      inherit pkgs palette;
     };
 
     programs.zsh = {
