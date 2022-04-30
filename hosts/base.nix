@@ -70,7 +70,6 @@
     unrar
     unzip
     zip
-    tar
 
     curl
 
