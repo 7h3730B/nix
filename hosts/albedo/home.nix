@@ -44,15 +44,15 @@ in
     # Terminal /cli
     programs.alacritty = {
       enable = true;
-    } // (import "${configDir}/alacritty") {
+    } // (import "${configDir}/alacritty" {
       inherit pkgs palette;
-    };
+    });
 
     programs.zsh = {
       enable = true;
-    } // (import "${configDir}/zsh") {
+    } // (import "${configDir}/zsh" {
       inherit pkgs;
-    };
+    });
 
     programs.nix-index = {
       enable = true;
@@ -72,9 +72,9 @@ in
 
     programs.tmux = {
       enable = true;
-    } // (import "${configDir}/tmux") {
+    } // (import "${configDir}/tmux" {
       inherit pkgs;
-    };
+    });
 
     programs.git = {
       enable = true;
@@ -92,9 +92,9 @@ in
     # Desktop
     services.sxhkd = {
       enable = true;
-    } // (import "${configDir}/sxhkd") {
+    } // (import "${configDir}/sxhkd" {
       inherit configDir;
-    };
+    });
 
     services.picom = {
       enable = true;
@@ -102,23 +102,23 @@ in
 
     services.dunst = {
       enable = true;
-    } // (import "${configDir}/dunst") {
+    } // (import "${configDir}/dunst" {
       inherit pkgs palette;
-    };
+    });
 
     # Editors
     programs.vscode = {
       enable = true;
-    } // (import "${configDir}/vscode") {
+    } // (import "${configDir}/vscode" {
       inherit pkgs palette;
-    };
+    });
 
     # TODO: move to neovim
     programs.vim = {
       enable = true;
-    } // (import "${configDir}/vim") {
+    } // (import "${configDir}/vim" {
       inherit pkgs palette;
-    };
+    });
 
     xsession = {
       enable = true;
@@ -129,9 +129,9 @@ in
         startupPrograms = [
           "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
         ];
-      } // (import "${configDir}/bspwm") {
+      } // (import "${configDir}/bspwm" {
         inherit pkgs colorscheme palette;
-      };
+      });
     };
   };
 }
