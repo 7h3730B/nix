@@ -20,6 +20,7 @@ in
       ../base.nix
 
       ../../modules/tailscale.nix
+      ../../modules/xrdp.nix
     ];
 
   boot = {
