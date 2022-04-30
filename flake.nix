@@ -36,7 +36,7 @@
       , configuration ? {}
       , modules ? []
       , overlays ? []
-      , extraModules ? [ extraModules ]
+      , extraModules ? []
       , specialArgs ? {}
       , ...
       }:
@@ -63,10 +63,12 @@
     {
       nixosConfigurations."albedo" = nixosSystem {
           configuration = ./hosts/albedo;
+          extraModules = extraModules;
         };
 
       nixosConfigurations."tmp" = nixosSystem {
           configuration = ./hosts/tmp;
+          extraModules = extraModules;
         };
     };
 }
