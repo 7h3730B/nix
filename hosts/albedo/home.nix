@@ -98,7 +98,7 @@ in
 
     services.picom = {
       enable = true;
-    } // (import "${configDir}/picom");
+    } // (import "${configDir}/picom") {};
 
     services.dunst = {
       enable = true;
