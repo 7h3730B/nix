@@ -41,53 +41,53 @@ in
       TERMINAL = "alacritty";
     };
 
-    # # Terminal /cli
-    # programs.alacritty = {
-    #   enable = true;
-    # } // (import "${configDir}/alacritty") {
-    #   inherit pkgs palette;
-    # };
+    # Terminal /cli
+    programs.alacritty = {
+      enable = true;
+    } // (import "${configDir}/alacritty") {
+      inherit pkgs palette;
+    };
 
-    # programs.zsh = {
-    #   enable = true;
-    # } // (import "${configDir}/zsh") {
-    #   inherit pkgs;
-    # };
+    programs.zsh = {
+      enable = true;
+    } // (import "${configDir}/zsh") {
+      inherit pkgs;
+    };
 
-    # programs.nix-index = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # };
+    programs.nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-    # programs.direnv = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    #   nix-direnv.enable = true;
-    # };
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
 
-    # programs.starship = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    # } // (import "${configDir}/starship");
+    programs.starship = {
+      enable = true;
+      enableZshIntegration = true;
+    } // (import "${configDir}/starship");
 
-    # programs.tmux = {
-    #   enable = true;
-    # } // (import "${configDir}/tmux") {
-    #   inherit pkgs;
-    # };
+    programs.tmux = {
+      enable = true;
+    } // (import "${configDir}/tmux") {
+      inherit pkgs;
+    };
 
-    # programs.git = {
-    #   enable = true;
-    # } // (import "${configDir}/git");
+    programs.git = {
+      enable = true;
+    } // (import "${configDir}/git");
 
-    # programs.fzf = {
-    #   enable = true;
-    #   enableZshIntegratin = true;
-    # };
+    programs.fzf = {
+      enable = true;
+      enableZshIntegratin = true;
+    };
 
-    # programs.bat = {
-    #   enable = true;
-    # };
+    programs.bat = {
+      enable = true;
+    };
 
     # # Desktop
     # programs.sxhkd = {
