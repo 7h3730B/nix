@@ -15,5 +15,5 @@
       normal_border_color = palette.primary.background;
       active_border_color = palette.primary.background;
       focused_border_color = palette.primary.foreground;
-  }
+  };
 }

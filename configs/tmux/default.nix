@@ -36,5 +36,5 @@
 
     # Reload tmux config
     bind r source-file ~/.tmux.conf
-  ''
+  '';
 }

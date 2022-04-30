@@ -17,5 +17,5 @@
       deleted = "[$\{count\}d](fg:red bold)";
       style = "bold purple";
     };
-  } 
+  };
 }
