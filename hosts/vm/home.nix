@@ -104,11 +104,18 @@ in
       enable = true;
     } // (import "${configDir}/dunst");
 
+    # Editors
     programs.vscode = {
       enable = true;
     } // (import "${configDir}/vscode}") {
       inherit pkgs palette;
     };
+
+    programs.vim = {
+      enable = true;
+    } // (import "${configDir}/vim") {
+      inherit pkgs palette;
+    }
   };
 
   xsession = {

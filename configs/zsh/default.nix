@@ -9,6 +9,19 @@ in {
   defaultKeymap = "viins";
   dotDir = ".config/zsh";
 
+  oh-my-zsh = {
+    enable = true;
+    plugins = [
+      "docker"
+      "nmap"
+      "git"
+      "git-extras"
+      "tmux"
+      "vi-mode"
+      "ssh-agent"
+    ];
+  };
+
   initExtra = ''
     ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
 
