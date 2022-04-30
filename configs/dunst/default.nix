@@ -1,6 +1,6 @@
 { pkgs
 , palette
-}: {
+, ... }: {
   iconTheme = {
     name = "Papirus";
     package = pkgs.papirus-icon-theme;
