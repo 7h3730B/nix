@@ -43,7 +43,6 @@
       }:
       let
         pkgs = importPkgs nixos overlays system;
-        inherit username colorscheme configDir palette;
       in
         lib.nixosSystem {
           inherit system;
@@ -53,7 +52,8 @@
               (inputs)
               unstable
               nixos
-              home
+              home;
+            inherit
               username
               colorscheme
               palette
