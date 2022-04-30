@@ -65,10 +65,5 @@
           configuration = ./hosts/albedo;
           extraModules = extraModules;
         };
-
-      nixosConfigurations."tmp" = nixosSystem {
-          configuration = ./hosts/tmp;
-          extraModules = extraModules;
-        };
     };
 }
