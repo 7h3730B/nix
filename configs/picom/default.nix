@@ -1,4 +1,4 @@
-{}: {
+{
   backend = "xrender";
 
   shadow = false;
