@@ -62,9 +62,9 @@
     in 
     {
       nixosConfigurations."albedo" = {
-        self.nixosSystem {
+        self.nixosSystem = {
           configuration = ./hosts/albedo;
         };
       };
-    }
+    };
 }
