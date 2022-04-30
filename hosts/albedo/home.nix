@@ -102,7 +102,9 @@ in
 
     programs.dunst = {
       enable = true;
-    } // (import "${configDir}/dunst");
+    } // (import "${configDir}/dunst") {
+      inherit pkgs palette;
+    };
 
     # Editors
     programs.vscode = {
