@@ -111,6 +111,7 @@ in
       inherit pkgs palette;
     };
 
+    # TODO: move to neovim
     programs.vim = {
       enable = true;
     } // (import "${configDir}/vim") {
