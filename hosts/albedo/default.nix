@@ -19,7 +19,7 @@ in
       ./home.nix
       ../base.nix
 
-      ../../modules/tailscale.nix
+      # ../../modules/tailscale.nix
       ../../modules/xrdp.nix
     ];
 
@@ -70,7 +70,7 @@ in
   nix.trustedUsers = [ "root" username ];
 
   users.users."${username}" = {
-    description = username;
+    description = "${username}";
     isNormalUser = true;
     group = "users";
     extraGroups = [ "audio" "disk" "docker" "networkmanager" "video" "wheel" ];
