@@ -1,4 +1,4 @@
-{}: {
+{
   userName = "7h3730b";
 	userEmail = "56200898+7h3730B@users.noreply.github.com";
 
