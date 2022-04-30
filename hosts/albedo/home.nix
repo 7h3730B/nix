@@ -82,7 +82,7 @@ in
 
     programs.fzf = {
       enable = true;
-      enableZshIntegratin = true;
+      enableZshIntegration = true;
     };
 
     programs.bat = {
