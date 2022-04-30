@@ -116,7 +116,7 @@ in
       enable = true;
     } // (import "${configDir}/vim") {
       inherit pkgs palette;
-    }
+    };
   };
 
   xsession = {
@@ -131,5 +131,5 @@ in
     startupPrograms = [
       "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
     ];
-  }
+  };
 }
