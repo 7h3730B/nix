@@ -8,7 +8,7 @@
 , configDir
 , ... }: 
 let
-  wallpaper = ././;
+  wallpaper = ../../wallpaper/nix-wallpaper-dracula.png;
 in
 {
   home-manager = {

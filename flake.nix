@@ -61,9 +61,9 @@
       };
     in 
     {
-      nixosConfigurations."nixos-vm" = {
+      nixosConfigurations."albedo" = {
         self.nixosSystem {
-          configuration = ./hosts/vm;
+          configuration = ./hosts/albedo;
         };
       };
     }

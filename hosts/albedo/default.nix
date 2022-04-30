@@ -8,7 +8,7 @@
 , configDir
 , ... }:
 let
-  hostname = "nixos-vm";
+  hostname = "albedo";
 in
 {
   system.stateVersion = "21.11";
