@@ -48,5 +48,5 @@
       foreground = palette.normal.white;
       timeout = 0;
     };
-  }
+  };
 }
