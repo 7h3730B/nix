@@ -5,9 +5,9 @@ NixOS config
 My machines are named after characters from [Isekai Quartet](https://myanimelist.net/anime/38472/Isekai_Quartet/)
 
 ### Albedo
-Is my main machine there all the work should be done, currently it runs in a VM.
+Is my main machine there all the work is done, currently it runs in a VM.
 
-Should be connected to tailscale
+Connected to tailscale
 
 ### Rem
 Rem is a raspberry pi in my home network also connected to tailscale. It runs all private stuff, like RSS feed manager, bookmark manager, irc bouncer, a WiFi access point and other stuff i don't know yet.  
