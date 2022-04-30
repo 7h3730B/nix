@@ -126,13 +126,12 @@ in
 
       windowManager.bspwm = {
         enable = true;
+        startupPrograms = [
+          "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
+        ];
       } // (import "${configDir}/bspwm") {
         inherit pkgs colorscheme palette;
       };
-
-      startupPrograms = [
-        "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
-      ];
     };
   };
 }
