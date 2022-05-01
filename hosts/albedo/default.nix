@@ -19,9 +19,9 @@ in
       ./home.nix
       ../base.nix
 
-      ../../modules/fonts.nix
       # ../../modules/tailscale.nix
       ../../modules/xrdp.nix
+      ../../modules/fonts.nix
     ];
 
   boot = {
