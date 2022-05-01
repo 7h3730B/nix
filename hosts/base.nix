@@ -50,22 +50,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Amsterdam";
 
-  fonts = {
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "Noto" "Mononoki" "JetBrainsMono" "Iosevka" "RobotoMono" ]; })
-      noto-fonts
-      noto-fonts-emoji
-      fira-code
-    ];
-
-    fontconfig.defaultFonts = {
-      serif = [ "Noto Serif" "Noto Serif Nerd Font" ];
-      sansSerif = [ "NotoSans Nerd Font" "Noto Sans" ];
-      monospace = [ "Fira Code Nerd Font" "Fira Code Font" ];
-      emoji = [ "Noto Color Emoji" ];
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     unrar
     unzip
@@ -83,6 +67,4 @@
     stdmanpages
     posix_man_pages
   ];
-
-  services.xserver.enable = true;
 }

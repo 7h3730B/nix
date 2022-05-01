@@ -19,6 +19,7 @@ in
       ./home.nix
       ../base.nix
 
+      ../../modules/fonts.nix
       # ../../modules/tailscale.nix
       ../../modules/xrdp.nix
     ];
@@ -39,6 +40,8 @@ in
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
   networking.interfaces.ens18.useDHCP = true;
+
+  services.xserver.enable = true;
 
   sound.enable = false;
 
