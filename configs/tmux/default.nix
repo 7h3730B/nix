@@ -12,11 +12,6 @@
   plugins = with pkgs.tmuxPlugins; [ resurrect yank nord ];
 
   extraConfig = ''
-
-    # Undercurl
-    # set -g default-terminal ''${TERM}
-    # set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-
     # Automatically set window title
     set-window-option -g automatic-rename on
     set-option -g set-titles on
@@ -33,8 +28,5 @@
     bind -n M-j select-pane -D 
     bind -n M-k select-pane -U
     bind -n M-l select-pane -R
-
-    # Reload tmux config
-    bind r source-file ~/.tmux.conf
   '';
 }
