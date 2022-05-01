@@ -1,6 +1,6 @@
 { config
-,  configDir
 , pkgs
+, configDir
 , wallpaper
 , palette
 , colorscheme
