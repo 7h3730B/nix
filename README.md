@@ -40,6 +40,10 @@ Beatrice should be just a external SSD which I can boot of. Mainly used so I hav
 
 ## Notes
 
+### RestrictedPathError
+
+I don't know why but just comment everything that hast to do with home-manager out
+
 ### directly install form github flake
 
 ```bash
