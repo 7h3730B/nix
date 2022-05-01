@@ -18,9 +18,9 @@ in
 
   home-manager.users."${username}" = {
     imports = [
-      (import ../../modules/home/full-graphical.nix {
-        inherit pkgs configDir wallpaper palette colorscheme;
-      })
+      # (import ../../modules/home/full-graphical.nix {
+      #   inherit pkgs configDir wallpaper palette colorscheme;
+      # })
     ];
 
     home.packages = with pkgs; [

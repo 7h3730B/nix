@@ -40,6 +40,12 @@ Beatrice should be just a external SSD which I can boot of. Mainly used so I hav
 
 ## Notes
 
+### directly install form github flake
+
+```bash
+nix-install --root /mnt --flake github:7h3730b/nix#machine
+```
+
 ### disk space issue
 
 I had multiple problems with this, 'cause I tried to build in a VM with only 2GB /tmp (automatically uses 50% of your RAM) and that is nearly not enough for nerdfonts for example. So there are multiple workarounds:  
