@@ -1,6 +1,8 @@
 { configDir
 , pkgs
 , wallpaper
+, palette
+, colorscheme
 , ... }: {
   # Terminal /cli
   programs.alacritty = {
