@@ -1,5 +1,4 @@
-{ config
-, pkgs
+{ pkgs
 , configDir
 , wallpaper
 , palette
