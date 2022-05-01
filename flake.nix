@@ -41,7 +41,7 @@
       , ...
       }:
       let
-        pkgs = (importPkgs unstable overlays system);
+        pkgs = (importPkgs nixos overlays system);
       in
         lib.nixosSystem {
           inherit system;
