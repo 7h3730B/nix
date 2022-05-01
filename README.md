@@ -29,6 +29,7 @@ Megumin is my old laptop. I don't know yet what to do with it but I will probabl
 Aqua should be a really hardened server, and a pretty cheap VPS in the cloud (Oracle free tier?). It only purpose is to have a public facing ssh and connect to my tailscale network.
 
 This should allow my to connect to all machines in my tailscale network without the machine I'm working from to be connected to it. (ssh tunneling is awesome).
+
 ### Kazuma
 
 Kazuma is my public facing contabo vps it should not have any connection to tailscale or my home network it should run things like APIs, Websites, Game Servers, etc...  
@@ -37,9 +38,9 @@ Kazuma is my public facing contabo vps it should not have any connection to tail
 
 Beatrice should be just a external SSD which I can boot of. Mainly used so I have a quick *nix-system ready on my Windows laptop to be able to move around the house and connect via rdp to my main workstation and maybe in the future do things like car hacking
 
-## Notes:
+## Notes
 
-### disk space issue:  
+### disk space issue
 
 I had multiple problems with this, 'cause I tried to build in a VM with only 2GB /tmp (automatically uses 50% of your RAM) and that is nearly not enough for nerdfonts for example. So there are multiple workarounds:  
 
