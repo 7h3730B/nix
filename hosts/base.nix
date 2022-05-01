@@ -83,4 +83,6 @@
     stdmanpages
     posix_man_pages
   ];
+
+  services.xserver.enable = true;
 }
