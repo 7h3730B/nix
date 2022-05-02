@@ -3,8 +3,6 @@
 , nixos
 , home
 , username
-, colorscheme
-, palette
 , ... }:
 let
   hostname = "albedo";
@@ -15,7 +13,7 @@ in
   imports =
     [
       ./hardware-configuration.nix
-      ./home.nix
+      # ./home.nix
       ../base.nix
 
       # ../../modules/tailscale.nix
