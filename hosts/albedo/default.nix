@@ -5,7 +5,6 @@
 , username
 , colorscheme
 , palette
-, configDir
 , ... }:
 let
   hostname = "albedo";
@@ -81,5 +80,6 @@ in
     shell = pkgs.zsh;
     uid = 1000;
     home = "/home/${username}";
+    initialPassword = "123";
   };
 }

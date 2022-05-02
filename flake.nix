@@ -13,11 +13,7 @@
       inherit (nixos) lib;
 
       username = "teo";
-      colorscheme = "tokyonight";
-      configDir = ./configs;
-
       overlay = import ./pkgs;
-      palette = import (./palettes + "/${colorscheme}.nix");
 
       extraModules = [
         home.nixosModules.home-manager
@@ -53,10 +49,7 @@
               nixos
               home;
             inherit
-              username
-              colorscheme
-              palette
-              configDir;
+              username;
           } // specialArgs;
       };
     in 

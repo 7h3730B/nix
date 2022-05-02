@@ -5,7 +5,6 @@
 , username
 , colorscheme
 , palette
-, configDir
 , ... }: {
   nix = {
     package = pkgs.nixUnstable;

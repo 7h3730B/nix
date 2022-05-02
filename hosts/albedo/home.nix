@@ -3,9 +3,6 @@
 , nixos
 , home
 , username
-, colorscheme
-, palette
-, configDir
 , ... }: 
 let
   wallpaper = ../../wallpaper/nix-wallpaper-dracula.png;
@@ -18,9 +15,7 @@ in
 
   home-manager.users."${username}" = {
     imports = [
-      (import ../../modules/home/full-graphical.nix {
-        inherit pkgs configDir wallpaper palette colorscheme;
-      })
+      ../../profiles/home/full-graphical.nix
     ];
 
     home.packages = with pkgs; [
