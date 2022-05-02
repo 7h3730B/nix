@@ -3,7 +3,7 @@
 , lib
 , ... }: 
 let
-  palette = (import ../../../palettes);
+  palette = (import ../../../../palettes);
 in {
   services.dunst = {
     enable = true;

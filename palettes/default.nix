@@ -1,11 +1,6 @@
-{ pkgs
-, config
-, lib
-, ... }: 
 let
   colorscheme = "tokyonight";
+  palette = import ./tokyonight.nix;
 in {
-  imports = [
-    ("./tokyonight/${colorscheme}")
-  ];
+  inherit (palette) primary normal bright;
 }

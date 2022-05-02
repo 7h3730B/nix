@@ -8,7 +8,7 @@ let
     inherit key mods action;
     mode = "Vi";
   };
-  palette = (import ../../../palettes);
+  palette = (import ../../../../palettes);
 in
 {
   programs.alacritty = {

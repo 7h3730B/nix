@@ -4,7 +4,7 @@
 , ... }: 
 let
   wallpaper = ../../../wallpaper/nix-wallpaper-dracula.png;
-  palette = (import ../../../palettes);
+  palette = (import ../../../../palettes);
 in
 {
   xsession = {
