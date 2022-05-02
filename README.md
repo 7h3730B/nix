@@ -80,3 +80,7 @@ If you have a multi user system change TMPDIR in your nix daemon config or just 
   ```bash
     sudo rmdir /tmp && ln -s /var/tmp /tmp
   ```
+
+### Proxmox install
+
+Change to uefi boot, add efi drive and add hdd to boot options then follow: https://pve.proxmox.com/wiki/OVMF/UEFI_Boot_Entries to add grub as boot option.
