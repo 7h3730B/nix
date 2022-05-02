@@ -62,5 +62,5 @@ in {
 
   programs.bat = {
     enable = true;
-  }
+  };
 }

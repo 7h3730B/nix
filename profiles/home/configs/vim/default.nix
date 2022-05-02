@@ -42,5 +42,5 @@
 
       set laststatus=2
     '';
-  }
+  };
 }
