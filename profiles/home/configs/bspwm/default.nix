@@ -3,7 +3,7 @@
 , lib
 , ... }: 
 let
-  wallpaper = ../../../wallpaper/nix-wallpaper-dracula.png;
+  wallpaper = ../../../../wallpaper/nix-wallpaper-dracula.png;
   palette = (import ../../../../palettes);
 in
 {
