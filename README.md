@@ -26,13 +26,21 @@ Megumin is my old laptop. I don't know yet what to do with it but I will probabl
 
 ### Aqua
 
-Aqua should be a really hardened server, and a pretty cheap VPS in the cloud (Oracle free tier?). It only purpose is to have a public facing ssh and connect to my tailscale network.
+Aqua should be a really hardened server, and a pretty cheap VPS in the cloud (Oracle free tier 1G server?). It only purpose is to have a public facing ssh and connect to my tailscale network.
 
 This should allow my to connect to all machines in my tailscale network without the machine I'm working from to be connected to it. (ssh tunneling is awesome).
 
+### Tanya
+
+Tanya is a public facing (Oracle free tier) server which hosts little websites and APIs
+
+### Emilia
+
+Emilia is ARM server which I don't know yet what todo with.
+
 ### Kazuma
 
-Kazuma is my public facing contabo vps it should not have any connection to tailscale or my home network it should run things like APIs, Websites, Game Servers, etc...  
+Kazuma is my public facing contabo vps it should not have any connection to tailscale or my home network it should run things like Game Servers which need a little bit of power  
 
 ### Beatrice
 
@@ -84,3 +92,10 @@ If you have a multi user system change TMPDIR in your nix daemon config or just 
 ### Proxmox install
 
 Change to uefi boot, add efi drive and add hdd to boot options then follow: https://pve.proxmox.com/wiki/OVMF/UEFI_Boot_Entries to add grub as boot option.
+
+# TODO: 
+
+- set everything up!!!  
+- switch to erase your darlings with zfs for some things?  
+- draw a graph how everything is connected (home network, tailscale, syncthing) 
+- setup syncthing
