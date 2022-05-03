@@ -43,16 +43,17 @@ in
 
   services.xserver = {
     enable = true;
+    videoDrivers = [ "vmware" "virtualbox" "modesetting" ];
 
     displayManager.lightdm.greeters.mini = {
       enable = true;
-      user = username;
-      extraConfig = ''
-        text-color = "${palette.primary.foreground}"
-        password-background-color = "${palette.normal.cyan}"
-        window-color = "${palette.primary.background}"
-        border-color = "${palette.bright.white}"
-      '';
+      # user = username;
+      # extraConfig = ''
+      #   text-color = "${palette.primary.foreground}"
+      #   password-background-color = "${palette.normal.cyan}"
+      #   window-color = "${palette.primary.background}"
+      #   border-color = "${palette.bright.white}"
+      # '';
     };
   };
 
