@@ -6,6 +6,7 @@
 , ... }:
 let
   hostname = "albedo";
+  palette = (import ../../../../palettes);
 in
 {
   system.stateVersion = "21.11";
@@ -19,6 +20,8 @@ in
       # ../../modules/tailscale.nix
       ../../modules/xrdp.nix
       ../../modules/fonts.nix
+
+      ../../profiles/x11.nix
     ];
 
   boot = {
@@ -38,7 +41,20 @@ in
   networking.hostName = "${hostname}";
   networking.interfaces.ens18.useDHCP = true;
 
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+
+    displayManager.lightdm.greeters.mini = {
+      enable = true;
+      user = username;
+      extraConfig = ''
+        text-color = "${palette.primary.foreground}"
+        password-background-color = "${palette.normal.cyan}"
+        window-color = "${palette.primary.background}"
+        border-color = "${palette.bright.white}"
+      '';
+    };
+  };
 
   sound.enable = false;
 

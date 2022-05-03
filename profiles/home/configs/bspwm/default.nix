@@ -13,9 +13,7 @@ in
 
     windowManager.bspwm = {
       enable = true;
-      startupPrograms = [
-        "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
-      ];
+
       monitors = {
         "focused" = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "0"];
       };
@@ -34,6 +32,10 @@ in
           active_border_color = palette.primary.background;
           focused_border_color = palette.primary.foreground;
       };
+
+      startupPrograms = [
+        "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
+      ];
     };
   };
 }
