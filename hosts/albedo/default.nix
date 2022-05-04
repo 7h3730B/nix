@@ -43,7 +43,7 @@ in
 
   services.xserver = {
     enable = true;
-    videoDrivers = [ "vmware" "virtualbox" "modesetting" ];
+    videoDrivers = [ "modesetting" ];
 
     displayManager.lightdm.greeters.mini = {
       enable = true;

@@ -14,9 +14,9 @@ in
     windowManager.bspwm = {
       enable = true;
 
-      monitors = {
-        "focused" = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "0"];
-      };
+      # monitors = {
+      #   "focused" = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "0"];
+      # };
 
       settings = {
           focus_follows_pointer = true;
