@@ -10,4 +10,10 @@
   };
 
   services.xbanish.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    xorg.xev
+    xorg.xkill
+    xorg.xrandr
+  ];
 }
