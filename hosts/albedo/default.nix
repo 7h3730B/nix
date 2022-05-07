@@ -13,15 +13,15 @@ in
 
   imports =
     [
-      ./hardware-configuration.nix
-      ./home.nix
       ../base.nix
+      ./hardware-configuration.nix
 
       # ../../modules/tailscale.nix
       ../../modules/xrdp.nix
       ../../modules/fonts.nix
 
       ../../profiles/x11.nix
+      ./home.nix
     ];
 
   boot = {
@@ -41,21 +41,21 @@ in
   networking.hostName = "${hostname}";
   networking.interfaces.ens18.useDHCP = true;
 
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "modesetting" ];
+  # services.xserver = {
+  #   enable = true;
+  #   videoDrivers = [ "modesetting" ];
 
-    # displayManager.lightdm.greeters.mini = {
-    #   enable = true;
-      # user = username;
-      # extraConfig = ''
-      #   text-color = "${palette.primary.foreground}"
-      #   password-background-color = "${palette.normal.cyan}"
-      #   window-color = "${palette.primary.background}"
-      #   border-color = "${palette.bright.white}"
-      # '';
-    # };
-  };
+  # displayManager.lightdm.greeters.mini = {
+  #   enable = true;
+  # user = username;
+  # extraConfig = ''
+  #   text-color = "${palette.primary.foreground}"
+  #   password-background-color = "${palette.normal.cyan}"
+  #   window-color = "${palette.primary.background}"
+  #   border-color = "${palette.bright.white}"
+  # '';
+  # };
+  # };
 
   sound.enable = false;
 
@@ -86,6 +86,7 @@ in
 
   nix.trustedUsers = [ "root" username ];
 
+  users.defaultShell = pkgs.zsh;
   users.users."${username}" = {
     description = "${username}";
     isNormalUser = true;

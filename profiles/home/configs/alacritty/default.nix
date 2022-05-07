@@ -71,6 +71,6 @@ in
         (viKeybind "V" "Shift|Alt" "ScrollToBottom")
         (keybind "V" "Shift|Alt" "ToggleViMode")
       ];
-   };
- };
+    };
+  };
 }
