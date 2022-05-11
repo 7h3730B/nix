@@ -14,7 +14,9 @@ in
   };
 
   home-manager.users."${username}" = {
-    imports = [(import ../../profiles/home/full-graphical.nix)];
+    imports = [
+      ../../profiles/home/full-graphical.nix
+    ];
 
     home.packages = with pkgs; [
       asciinema
