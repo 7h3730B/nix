@@ -21,7 +21,6 @@ in {
         "git-extras"
         "tmux"
         "vi-mode"
-        "ssh-agent"
       ];
     };
 
