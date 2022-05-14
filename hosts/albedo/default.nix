@@ -41,22 +41,6 @@ in
   networking.hostName = "${hostname}";
   networking.interfaces.ens18.useDHCP = true;
 
-  # services.xserver = {
-  #   enable = true;
-  #   videoDrivers = [ "modesetting" ];
-
-  # displayManager.lightdm.greeters.mini = {
-  #   enable = true;
-  # user = username;
-  # extraConfig = ''
-  #   text-color = "${palette.primary.foreground}"
-  #   password-background-color = "${palette.normal.cyan}"
-  #   window-color = "${palette.primary.background}"
-  #   border-color = "${palette.bright.white}"
-  # '';
-  # };
-  # };
-
   sound.enable = false;
 
   security.rtkit.enable = true;
