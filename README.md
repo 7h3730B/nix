@@ -48,6 +48,10 @@ Beatrice should be just a external SSD which I can boot of. Mainly used so I hav
 
 ## Notes
 
+### sxhkd spawning failed issue
+
+make sure sessionVariable SHELL ist set to something that exists!
+
 ### RestrictedPathError
 
 I don't know why but just comment everything that hast to do with home-manager out

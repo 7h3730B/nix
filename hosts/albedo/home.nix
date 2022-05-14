@@ -40,6 +40,7 @@ in
       EDITOR = "vim";
       BROWSER = "brave";
       TERMINAL = "alacritty";
+      SHELL = "${pkgs.zsh}/bin/zsh";
     };
   };
 }
