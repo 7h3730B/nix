@@ -12,7 +12,7 @@ in {
       "super + Return" = "$TERMINAL";
 
       # Open application
-      "super + {_, shift + }d" = "{rofi, dmenu}";
+      "super + {_, shift + }d" = "{rofi, dmenu} -show combi";
 
       # Open Browser
       "super + w" = "$BROWSER";

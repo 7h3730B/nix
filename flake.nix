@@ -5,10 +5,12 @@
     unstable.url = "github:NixOS/nixpkgs/master";
     nixos.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    agenix.url = "github:ryantm/agenix";
+
     home.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, unstable, nixos, home, ... }@inputs: 
+  outputs = { self, unstable, nixos, home, agenix, ... }@inputs: 
     let
       inherit (nixos) lib;
 
@@ -17,6 +19,7 @@
 
       extraModules = [
         home.nixosModules.home-manager
+        agenix.nixosModule
       ];
 
       importPkgs = pkgs: overlays: system: import pkgs {
