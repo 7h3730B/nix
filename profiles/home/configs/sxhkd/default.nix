@@ -9,7 +9,7 @@ in {
 
     keybindings = {
       # Open terminal
-      "super + Return" = "$TERMINAL";
+      "super + Return" = "alacritty";
 
       # Open application
       "super + {_, shift + } d" = "{rofi, dmenu}";
