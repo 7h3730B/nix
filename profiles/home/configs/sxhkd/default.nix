@@ -12,7 +12,7 @@ in {
       "super + Return" = "alacritty";
 
       # Open application
-      "super + {_, shift + } d" = "{rofi, dmenu}";
+      "super + {_, shift + }d" = "{rofi, dmenu}";
 
       # Open Browser
       "super + w" = "$BROWSER";
