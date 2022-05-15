@@ -19,7 +19,6 @@
 
       extraModules = [
         home.nixosModules.home-manager
-        agenix.nixosModule.agenix
       ];
 
       importPkgs = pkgs: overlays: system: import pkgs {
