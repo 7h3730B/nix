@@ -66,6 +66,6 @@
     stdmanpages
     posix_man_pages
 
-    agenix.defaultPackage.x86_64-linux
+    agenix
   ];
 }
