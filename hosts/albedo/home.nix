@@ -16,6 +16,7 @@ in
   home-manager.users."${username}" = {
     imports = [
       ../../profiles/home/full-graphical.nix
+      ../../profiles/home/configs/ssh
     ];
 
     home.packages = with pkgs; [
