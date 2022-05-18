@@ -22,6 +22,10 @@
         agenix.nixosModules.age
       ];
 
+      sharedOverlays = [
+        agenix.overlay
+      ];
+
       importPkgs = pkgs: overlays: system: import pkgs {
         inherit system overlays;
         overlay = [ overlay ] ++ overlays;
@@ -60,7 +64,7 @@
       nixosConfigurations."albedo" = nixosSystem {
           configuration = ./hosts/albedo;
           extraModules = extraModules;
-          overlays = [ agenix.overlay ];
+          overlays = sharedOverlays;
         };
     };
 }
