@@ -9,5 +9,5 @@ let
 
   keysForSystems = list: users ++ (builtins.map (s: systems."${s}") list);
 in {
-  "supersecretpw.txt".publicKyes = keysForSystems [ "albedo" ];
+  "supersecretpw.txt".publicKeys = keysForSystems [ "albedo" ];
 }
