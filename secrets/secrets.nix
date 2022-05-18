@@ -7,7 +7,7 @@ let
     albedo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjNvjIYtI/DiFAZLNYXHrlhwe44dlzIREkQzZQoL3bk root@albedo";
   };
 
-  keysForSystems = list: users ++ (builtin.map (s: systems."${s}") list);
+  keysForSystems = list: users ++ (builtins.map (s: systems."${s}") list);
 in {
   "supersecretpw.txt".publicKyes = keysForSystems [ "albedo" ];
 }
