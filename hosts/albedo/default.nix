@@ -19,6 +19,7 @@ in
       # ../../modules/tailscale.nix
       ../../modules/xrdp.nix
       ../../modules/fonts.nix
+      ../../modules/sshd.nix
 
       ../../profiles/x11.nix
       ./home.nix
