@@ -19,7 +19,7 @@
 
       extraModules = [
         home.nixosModules.home-manager
-        agenix.nixosModule
+        agenix.nixosModules.age
       ];
 
       importPkgs = pkgs: overlays: system: import pkgs {
@@ -60,6 +60,7 @@
       nixosConfigurations."albedo" = nixosSystem {
           configuration = ./hosts/albedo;
           extraModules = extraModules;
+          overlays = [ agenix.overlay ];
         };
     };
 }
