@@ -8,7 +8,7 @@
     userEmail = "56200898+7h3730B@users.noreply.github.com";
 
     aliases = {
-      st = "status";
+      st = "status -s";
       co = "checkout";
       df = "diff";
       lg = "log --oneline";
