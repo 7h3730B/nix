@@ -8,6 +8,7 @@ let
   };
 
   keysForSystems = list: users ++ (builtins.map (s: systems."${s}") list);
-in {
+in 
+{
   "supersecretpw.txt".publicKeys = keysForSystems [ "albedo" ];
 }
