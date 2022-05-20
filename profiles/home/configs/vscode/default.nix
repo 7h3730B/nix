@@ -61,6 +61,6 @@
       zxh404.vscode-proto3
     ];
 
-    # package = pkgs.vscodium;
+    package = pkgs.vscodium;
   };
 }
