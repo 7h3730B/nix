@@ -27,8 +27,6 @@ in {
     initExtra = ''
       ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
 
-      _comp_options += (globdots)
-
       # Use vi keys in completion menu
       bindkey -M menuselect 'h' vi-backward-char
       bindkey -M menuselect 'k' vi-up-line-or-history
