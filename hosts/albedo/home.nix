@@ -43,5 +43,12 @@ in
       TERMINAL = "alacritty";
       SHELL = "${pkgs.zsh}/bin/zsh";
     };
+
+    programs.git = {
+      signing = {
+        key = "095A8277322FACFB";
+        signByDefault = true;
+      };
+    };
   };
 }

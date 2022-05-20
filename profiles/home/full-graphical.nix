@@ -4,6 +4,7 @@
     ./configs/bspwm
     ./configs/dunst
     ./configs/git
+    ./configs/gpg
     ./configs/picom
     ./configs/starship
     ./configs/sxhkd
