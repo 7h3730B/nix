@@ -3,6 +3,7 @@
 , lib
 , ... }: {
   programs.vscode = {
+    enable = true;
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
       dracula-theme.theme-dracula
