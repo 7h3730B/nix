@@ -10,5 +10,5 @@ let
   keysForSystems = list: users ++ (builtins.map (s: systems."${s}") list);
 in 
 {
-  "supersecretpw.txt".publicKeys = keysForSystems [ "albedo" ];
+  "tailscale-preauthkey".publicKeys = keysForSystems [ "albedo" ];
 }
