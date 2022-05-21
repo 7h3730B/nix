@@ -24,9 +24,9 @@ in
           gapless_monocle = true;
 
           border_width = 2;
-          window_gap = 28;
-          top_padding = 8;
-          bottom_padding = 0;
+          window_gap = 14;
+          top_padding = 0;
+          bottom_padding = 22;
 
           normal_border_color = palette.primary.background;
           active_border_color = palette.primary.background;
