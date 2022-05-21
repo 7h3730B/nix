@@ -50,5 +50,15 @@ in
         signByDefault = true;
       };
     };
+
+    services.polybar.script = with pkgs; ''
+      monitors=$(xrandr | grep ' connected ' | cut -d' ' -f1)
+
+      for monitor in $monitors; do
+        MONITOR="$monitor" polybar main &
+      done
+    '';
+
+    xsession.startupPrograms = [ "systemctl --user restart polybar" ];
   };
 }
