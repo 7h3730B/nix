@@ -51,14 +51,9 @@ in
       };
     };
 
+    services.polybar.config."module/eth".interface = "ens18";
     services.polybar.script = with pkgs; ''
-      monitors=$(xrandr | grep ' connected ' | cut -d' ' -f1)
-
-      for monitor in $monitors; do
-        MONITOR="$monitor" polybar main &
-      done
+      polybar main &
     '';
-
-    xsession.startupPrograms = [ "systemctl --user restart polybar" ];
   };
 }

@@ -20,7 +20,7 @@ in {
     polybar = {
       enable = true;
 
-      package = nixpkgs-unstable.polybar.override {
+      package = pkgs.polybar.override {
         alsaSupport = true;
         githubSupport = true;
         pulseSupport = true;
@@ -70,7 +70,7 @@ in {
           modules-left = "bspwm";
           modules-center = "xwindow";
           modules-right =
-            "filesystem eth memory cpu temperature date volume date";
+            "filesystem eth memory cpu date date";
 
           tray-position = "right";
           tray-padding = 3;
@@ -204,33 +204,33 @@ in {
           label-mounted = "%mountpoint%: %free%";
         };
 
-        "module/volume" = {
-          type = "internal/volume";
-          format-volume = "<label-volume> <bar-volume>";
-          label-volume = "VOL";
-          label-volume-foreground = foreground;
+        # "module/volume" = {
+        #   type = "internal/volume";
+        #   format-volume = "<label-volume> <bar-volume>";
+        #   label-volume = "VOL";
+          # label-volume-foreground = foreground;
 
-          format-muted-prefix = " ";
-          format-muted-foreground = foreground-alt;
-          label-muted = "sound muted";
+        #   format-muted-prefix = " ";
+        #   format-muted-foreground = foreground-alt;
+        #   label-muted = "sound muted";
 
-          bar-volume-width = "10";
-          bar-volume-foreground-0 = "#55aa55";
-          bar-volume-foreground-1 = "#55aa55";
-          bar-volume-foreground-2 = "#55aa55";
-          bar-volume-foreground-3 = "#55aa55";
-          bar-volume-foreground-4 = "#55aa55";
-          bar-volume-foreground-5 = "#f5a70a";
-          bar-volume-foreground-6 = "#ff5555";
-          bar-volume-gradient = true;
-          bar-volume-indicator = "|";
-          bar-volume-indicator-font = "2";
-          bar-volume-fill = "─";
-          bar-volume-fill-font = "2";
-          bar-volume-empty = "─";
-          bar-volume-empty-font = "2";
-          bar-volume-empty-foreground = foreground-alt;
-        };
+        #   bar-volume-width = "10";
+        #   bar-volume-foreground-0 = "#55aa55";
+        #   bar-volume-foreground-1 = "#55aa55";
+        #   bar-volume-foreground-2 = "#55aa55";
+        #   bar-volume-foreground-3 = "#55aa55";
+        #   bar-volume-foreground-4 = "#55aa55";
+        #   bar-volume-foreground-5 = "#f5a70a";
+        #   bar-volume-foreground-6 = "#ff5555";
+        #   bar-volume-gradient = true;
+        #   bar-volume-indicator = "|";
+        #   bar-volume-indicator-font = "2";
+        #   bar-volume-fill = "─";
+        #   bar-volume-fill-font = "2";
+        #   bar-volume-empty = "─";
+        #   bar-volume-empty-font = "2";
+        #   bar-volume-empty-foreground = foreground-alt;
+        # };
 
         "module/eth" = {
           type = "internal/network";
@@ -276,25 +276,25 @@ in {
           label = "${icons.date} %date% %time%";
         };
 
-        "module/temperature" = {
-          type = "internal/temperature";
-          thermal-zone = "0";
-          warn-temperature = "60";
+        # "module/temperature" = {
+        #   type = "internal/temperature";
+        #   thermal-zone = "0";
+        #   warn-temperature = "60";
 
-          format-underline = "#0561E8";
-          format = "<ramp> <label>";
-          format-warn-underline = "#0561E8";
-          format-warn = "<ramp> <label-warn>";
+        #   format-underline = "#0561E8";
+        #   format = "<ramp> <label>";
+        #   format-warn-underline = "#0561E8";
+        #   format-warn = "<ramp> <label-warn>";
 
-          label = "%temperature-c%";
-          label-warn = "%temperature-c%";
-          label-warn-foreground = secondary;
+        #   label = "%temperature-c%";
+        #   label-warn = "%temperature-c%";
+        #   label-warn-foreground = secondary;
 
-          ramp-0 = "";
-          ramp-1 = "";
-          ramp-2 = "";
-          ramp-foreground = foreground-alt;
-        };
+        #   ramp-0 = "";
+        #   ramp-1 = "";
+        #   ramp-2 = "";
+        #   ramp-foreground = foreground-alt;
+        # };
 
         "module/xkeyboard" = {
           type = "internal/xkeyboard";

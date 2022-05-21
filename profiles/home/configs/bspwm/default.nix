@@ -39,6 +39,7 @@ in
 
       startupPrograms = [
         "${pkgs.feh}/bin/feh --no-fehbg --bg-scale ${wallpaper}"
+        "systemctl --user restart polybar"
       ];
     };
   };

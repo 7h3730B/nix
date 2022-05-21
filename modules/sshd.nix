@@ -2,8 +2,8 @@
   services.openssh = {
     enable = true;
     kbdInteractiveAuthentication = false;
-    passwordAuthentication = false;
+    # passwordAuthentication = false;
     forwardX11 = false;
-    openFirewall = false;
+    openFirewall = true;
   };
 }
