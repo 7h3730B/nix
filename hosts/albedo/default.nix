@@ -54,6 +54,7 @@ in
 
   environment.systemPackages = with pkgs; [
     helvum
+    tldr
   ];
 
   services = {
