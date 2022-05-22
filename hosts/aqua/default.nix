@@ -20,8 +20,6 @@ in
       ./hardware-configuration.nix
 
       ../../modules/sshd.nix
-
-      ./home.nix
     ];
 
   boot = {
@@ -39,6 +37,7 @@ in
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
+  networking.firewall.enable = true;
   # TODO: get interface name
   networking.interfaces.ens18.useDHCP = true;
 
@@ -68,4 +67,9 @@ in
     initialPassword = "123";
     useDefaultShell = true;
   };
+
+  documentation.enable = false;
+  environment.noXlibs = true;
+
+  age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;
 }
