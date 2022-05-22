@@ -93,7 +93,7 @@
               user = "root";
               sshUser = "root";
               path = deploy-rs.lib.${nixosConfig.system}.activate.nixos nixosConfig;
-            }
+            };
           })
           (nixos.lib.filterAttrs
             (_: v: v.config.deploy.enable)
