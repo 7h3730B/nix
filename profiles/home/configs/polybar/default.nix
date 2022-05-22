@@ -70,13 +70,10 @@ in {
           modules-left = "bspwm";
           modules-center = "xwindow";
           modules-right =
-            "filesystem eth memory cpu date date";
+            "filesystem eth memory cpu date";
 
           tray-position = "right";
           tray-padding = 3;
-
-          scroll-up = "i3wm-wsnext";
-          scroll-down = "i3wm-wsprev";
         };
 
         # "bar/secondary" = fonts // {
