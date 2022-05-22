@@ -56,6 +56,7 @@ in
 
   nix.trustedUsers = [ "root" username ];
 
+  users.defaultUserShell = pkgs.zsh;
   users.users."${username}" = {
     description = "${username}";
     isNormalUser = true;

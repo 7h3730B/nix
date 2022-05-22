@@ -12,8 +12,14 @@ in {
 
 		ip = mkOption {
 			type = types.nullOr types.str;
-			defualt = null;
+			default = null;
 			description = "Overwrite the IP to use for connecting via SSH";
+		};
+
+		port = mkOption {
+			type = types.number;
+			default = 22;
+			description = "Change the ssh port";
 		};
 	};
 
