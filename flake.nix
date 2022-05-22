@@ -4,15 +4,13 @@
   inputs = {
     unstable.url = "github:NixOS/nixpkgs/master";
     nixos.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     agenix.url = "github:ryantm/agenix";
-
     home.url = "github:nix-community/home-manager";
-
     deploy-rs.url = "github:serokell/deploy-rs";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, unstable, nixos, home, agenix, deploy-rs, ... }@inputs: 
+  outputs = { self, unstable, nixos, home, agenix, deploy-rs, flake-utils, ... }@inputs: 
     let
       inherit (nixos) lib;
 
@@ -47,7 +45,7 @@
       , ...
       }:
       let
-        pkgs = (importPkgs unstable overlays system);
+        pkgs = (importPkgs nixos overlays system);
       in
         lib.nixosSystem {
           inherit system;
@@ -93,12 +91,24 @@
               user = "root";
               sshUser = "root";
               sshOpts = [ "-p" (builtins.toString nixosConfig.config.deploy.port) ];
-              path = deploy-rs.lib.${nixosConfig.system}.activate.nixos nixosConfig;
+              # TODO: use system from nixosConfig
+              path = deploy-rs.lib.x86_64-linux.activate.nixos nixosConfig;
             };
           })
           (nixos.lib.filterAttrs
             (_: v: v.config.deploy.enable)
             self.nixosConfigurations);
+
       };
-    };
+    } // flake-utils.lib.eachDefaultSystem (system: 
+      # because of nix > 2.8 issue
+      # https://github.com/serokell/deploy-rs/issues/155
+      let pkgs = nixos.legacyPackages.${system};
+      in {
+        apps.deploy-rs = deploy-rs.defaultApp."${system}";
+
+        devShells.default = pkgs.mkShell {
+          buildInputs = [ deploy-rs.defaultPackage."${system}" ];
+        };
+      });
 }
