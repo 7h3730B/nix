@@ -8,9 +8,11 @@
     agenix.url = "github:ryantm/agenix";
 
     home.url = "github:nix-community/home-manager";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, unstable, nixos, home, agenix, ... }@inputs: 
+  outputs = { self, unstable, nixos, home, agenix, deploy-rs, ... }@inputs: 
     let
       inherit (nixos) lib;
 
@@ -20,6 +22,7 @@
       extraModules = [
         home.nixosModules.home-manager
         agenix.nixosModules.age
+        ./modules/deploy.nix
       ];
 
       sharedOverlays = [
@@ -62,9 +65,39 @@
     in 
     {
       nixosConfigurations."albedo" = nixosSystem {
-          configuration = ./hosts/albedo;
-          extraModules = extraModules;
-          overlays = sharedOverlays;
-        };
+        configuration = ./hosts/albedo;
+        extraModules = extraModules;
+        overlays = sharedOverlays;
+      };
+
+      nixosConfigurations."aqua" = nixosSystem {
+        configuration = ./hosts/aqua;
+        extraModules = extraModules;
+        overlays = sharedOverlays;
+      };
+
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      deploy = {
+        magicRollback = true;
+        autoRollback = true;
+
+        nodes = builtins.mapAttrs
+          (_: nixosConfig: {
+            hostname =
+              if buildins.isNull nixosConfig.config.deploy.ip
+              # should be the same as in tailscale DNS
+              then "${nixosConfig.config.networking.hostName}"
+              else "${nixosConfig.config.deploy.ip}"
+
+            profiles.system = {
+              user = "root";
+              sshUser = "root";
+              path = deploy-rs.lib.${nixosConfig.system}.activate.nixos nixosConfig;
+            }
+          })
+          (nixos.lib.filterAttrs
+            (_: v: v.config.deploy.enable)
+            self.nixosConfigurations);
+      };
     };
 }
