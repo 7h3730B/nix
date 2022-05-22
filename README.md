@@ -36,7 +36,7 @@ Tanya is a public facing (Oracle free tier) server which hosts little websites a
 
 ### Emilia
 
-Emilia is ARM server which I don't know yet what todo with.
+Emilia is ARM server which at least should be a remote builder for arm
 
 ### Kazuma
 
