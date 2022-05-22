@@ -6,13 +6,17 @@
 , ... }:
 let
   hostname = "aqua";
+  sshPort = 4444;
 in
 {
   system.stateVersion = "21.11";
   deploy = {
     enable = true;
     ip = "aqua.teo.beer";
+    port = sshPort;
   };
+
+  services.openssh.ports = [ sshPort ];
 
   imports =
     [
@@ -22,24 +26,16 @@ in
       ../../modules/sshd.nix
     ];
 
-  boot = {
-    loader = {
-      efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        version = 2;
-        efiSupport = true;
-        enableCryptodisk = true;
-        device = "nodev";
-      };
-    };
+  boot.loader.grub = {
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    device = "nodev";
   };
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
   networking.firewall.enable = true;
-  # TODO: get interface name
-  networking.interfaces.ens18.useDHCP = true;
+  networking.interfaces.ens3.useDHCP = true;
 
   services = {
     resolved = {
@@ -54,14 +50,14 @@ in
 
   security.protectKernelImage = true;
 
-  nix.trustedUsers = [ "root" username ];
+  nix.trustedUsers = [ "root" ];
 
   users.defaultUserShell = pkgs.zsh;
   users.users."${username}" = {
     description = "${username}";
     isNormalUser = true;
     group = "users";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ ];
     createHome = true;
     uid = 1000;
     home = "/home/${username}";
@@ -72,5 +68,5 @@ in
   documentation.enable = false;
   environment.noXlibs = true;
 
-  age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;
+  age.secrets.tailscale-preauthkey.file = ../../secrets/tailscale-preauthkey;
 }

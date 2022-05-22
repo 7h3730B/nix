@@ -2,10 +2,10 @@
   services.openssh = {
     enable = true;
     kbdInteractiveAuthentication = false;
-    passwordAuthentication = false;
+    passwordAuthentication = true;
     forwardX11 = false;
     permitRootLogin = "prohibit-password";
-    # openFirewall = true;
+    openFirewall = true;
   };
 
   users.users.root.openssh.authorizedKeys.keys = [

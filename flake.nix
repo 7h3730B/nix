@@ -92,7 +92,7 @@
             profiles.system = {
               user = "root";
               sshUser = "root";
-              sshOpts = [ "-p" nixosConfig.config.deploy.port];
+              sshOpts = [ "-p" (builtins.toString nixosConfig.config.deploy.port) ];
               path = deploy-rs.lib.${nixosConfig.system}.activate.nixos nixosConfig;
             };
           })

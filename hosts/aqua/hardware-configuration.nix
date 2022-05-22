@@ -9,34 +9,25 @@
     ];
 
   boot = {
-    initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sd_mod" "sr_mod" ];
-    initrd.kernelModules = [ "dm-snapshot" ];
+    initrd.availableKernelModules = [ ];
+    initrd.kernelModules = [ "nvme" ];
     kernelModules = [ ];
     extraModulePackages = [ ];
 
     kernelPackages = pkgs.linuxPackages_latest;
     tmpOnTmpfs = true;
-
-    initrd.luks.devices = {
-      crypt = {
-        device = "/dev/sda2";
-        preLVM = true;
-      };
-    };
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/nixos";
+    { device = "/dev/sda1";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/boot";
+    { device = "/dev/disk/by-uuid/3E21-E7C9";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-label/swap"; }
-    ];
-
+    [ { device = "/swapfile"; size = 1024; } ];
 }
