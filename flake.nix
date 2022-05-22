@@ -84,10 +84,10 @@
         nodes = builtins.mapAttrs
           (_: nixosConfig: {
             hostname =
-              if buildins.isNull nixosConfig.config.deploy.ip
+              if builtins.isNull nixosConfig.config.deploy.ip
               # should be the same as in tailscale DNS
               then "${nixosConfig.config.networking.hostName}"
-              else "${nixosConfig.config.deploy.ip}"
+              else "${nixosConfig.config.deploy.ip}";
 
             profiles.system = {
               user = "root";

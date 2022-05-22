@@ -28,5 +28,5 @@
 
   #    ${tailscale}/bin/tailscale up --authkey $(cat ${config.age.secrets.tailscale-preauthkey.path})
   #  '';
-  };
+  # };
 }
