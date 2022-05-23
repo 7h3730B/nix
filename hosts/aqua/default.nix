@@ -12,7 +12,7 @@ in
   system.stateVersion = "21.11";
   deploy = {
     enable = true;
-    ip = "aqua.teo.beer";
+    ip = "aqua";
     port = sshPort;
   };
 
@@ -22,6 +22,7 @@ in
       ./hardware-configuration.nix
 
       ../../modules/sshd.nix
+      ../../modules/tailscale.nix
     ];
 
   services.openssh.ports = [ sshPort ];

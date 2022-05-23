@@ -6,18 +6,18 @@
   networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
   # networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
 
-  # age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;
-  # systemd.services.tailscale-autoauth = {
-  #  description = "Uses preauth key to connect to tailscale";
+  age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;
+  systemd.services.tailscale-autoauth = {
+   description = "Uses preauth key to connect to tailscale";
 
-  #  after = [ "network-pre.target" "tailscale.service" ];
-  #  wants = [ "network-pre.target" "tailscale.service" ];
-  #  wantedBy = [ "multi-user.target" ];
+   after = [ "network-pre.target" "tailscale.service" ];
+   wants = [ "network-pre.target" "tailscale.service" ];
+   wantedBy = [ "multi-user.target" ];
 
-  #  serviceConfig.Type = "oneshot";
+   serviceConfig.Type = "oneshot";
 
-  #  script = with pkgs; ''
-  #    ${tailscale}/bin/tailscale up --authkey $(cat ${config.age.secrets.tailscale-preauthkey.path})
-  #  '';
-  # };
+   script = with pkgs; ''
+     ${tailscale}/bin/tailscale up --authkey="$(cat ${config.age.secrets.tailscale-preauthkey.path})" --accept-dns=false
+   '';
+  };
 }
