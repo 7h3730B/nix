@@ -76,9 +76,11 @@
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
       deploy = {
-        magicRollback = true;
-        autoRollback = true;
+        magicRollback = false;
+        autoRollback = false;
 
+        # build all systems with nix run ".#deploy-rs" -- -s
+        # build just onw system with ".#name"
         nodes = builtins.mapAttrs
           (_: nixosConfig: {
             hostname =

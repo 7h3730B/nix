@@ -5,10 +5,11 @@ let
 
   systems = {
     albedo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjNvjIYtI/DiFAZLNYXHrlhwe44dlzIREkQzZQoL3bk root@albedo";
+    aqua = "";
   };
 
   keysForSystems = list: users ++ (builtins.map (s: systems."${s}") list);
 in 
 {
-  "tailscale-preauthkey".publicKeys = keysForSystems [ "albedo" ];
+  "tailscale-preauthkey".publicKeys = keysForSystems [ "albedo" "aqua" ];
 }

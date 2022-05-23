@@ -6,7 +6,7 @@
 , ... }:
 let
   hostname = "aqua";
-  sshPort = 4444;
+  sshPort = 22;
 in
 {
   system.stateVersion = "21.11";
@@ -16,8 +16,6 @@ in
     port = sshPort;
   };
 
-  services.openssh.ports = [ sshPort ];
-
   imports =
     [
       ../base.nix
@@ -25,6 +23,8 @@ in
 
       ../../modules/sshd.nix
     ];
+
+  # services.openssh.ports = [ sshPort ];
 
   boot.loader.grub = {
     efiSupport = true;
@@ -68,5 +68,5 @@ in
   documentation.enable = false;
   environment.noXlibs = true;
 
-  age.secrets.tailscale-preauthkey.file = ../../secrets/tailscale-preauthkey;
+  # age.secrets.tailscale-preauthkey.file = ../../secrets/tailscale-preauthkey;
 }
