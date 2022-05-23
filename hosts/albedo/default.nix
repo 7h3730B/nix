@@ -6,7 +6,6 @@
 , ... }:
 let
   hostname = "albedo";
-  palette = (import ../../palettes);
 in
 {
   system.stateVersion = "21.11";
