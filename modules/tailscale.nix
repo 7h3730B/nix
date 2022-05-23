@@ -17,15 +17,6 @@
   #  serviceConfig.Type = "oneshot";
 
   #  script = with pkgs; ''
-      # wait for tailscale to settle
-    #  sleep 2
-
-      # check if auth
-  #    status="$(${tailscale}/bin/tailscale status -json > ${jq}/bin/jq -r .BackendState)"
-  #    if [ $status = "Running"]; then # nothing
-  #      exit 0
-  #    fi
-
   #    ${tailscale}/bin/tailscale up --authkey $(cat ${config.age.secrets.tailscale-preauthkey.path})
   #  '';
   # };

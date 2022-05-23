@@ -24,7 +24,7 @@ in
       ../../modules/sshd.nix
     ];
 
-  # services.openssh.ports = [ sshPort ];
+  services.openssh.ports = [ sshPort ];
 
   boot.loader.grub = {
     efiSupport = true;
@@ -53,6 +53,9 @@ in
   nix.trustedUsers = [ "root" ];
 
   users.defaultUserShell = pkgs.zsh;
+  users.users.root = {
+    initialPassword = "aqua123";
+  };
   users.users."${username}" = {
     description = "${username}";
     isNormalUser = true;
