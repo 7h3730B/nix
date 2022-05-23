@@ -2,7 +2,7 @@
   services.openssh = {
     enable = true;
     # kbdInteractiveAuthentication = false;
-    # passwordAuthentication = false;
+    passwordAuthentication = false;
     allowSFTP = false;
     forwardX11 = false;
     permitRootLogin = "prohibit-password";

@@ -74,6 +74,12 @@
         overlays = sharedOverlays;
       };
 
+      nixosConfigurations."tanya" = nixosSystem {
+        configuration = ./hosts/tanya;
+        extraModules = extraModules;
+        overlays = sharedOverlays;
+      };
+
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
       deploy = {
         magicRollback = false;

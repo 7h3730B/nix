@@ -3,17 +3,16 @@
 , nixos
 , home
 , username
-, lib
 , ... }:
 let
-  hostname = "aqua";
+  hostname = "tanya";
   sshPort = 22;
 in
 {
   system.stateVersion = "21.11";
   deploy = {
     enable = true;
-    ip = "aqua.teo.beer";
+    ip = "tanya.teo.beer";
     port = sshPort;
   };
 
@@ -23,12 +22,11 @@ in
       ./hardware-configuration.nix
 
       ../../modules/sshd.nix
-      ../../modules/tailscale.nix
     ];
 
   services.openssh = {
     ports = [ sshPort ];
-    passwordAuthentication = lib.mkOverride 40 true;
+    passwordAuthentication = false;
   };
 
   boot.loader.grub = {
@@ -59,18 +57,7 @@ in
 
   users.defaultUserShell = pkgs.zsh;
   users.users.root = {
-    initialPassword = "aqua123";
-  };
-  users.users."${username}" = {
-    description = "${username}";
-    isNormalUser = true;
-    group = "users";
-    extraGroups = [ ];
-    createHome = true;
-    uid = 1000;
-    home = "/home/${username}";
-    initialPassword = "123";
-    useDefaultShell = true;
+    initialPassword = "tanya123";
   };
 
   documentation.enable = false;

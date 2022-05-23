@@ -32,7 +32,7 @@ This should allow my to connect to all machines in my tailscale network without 
 
 ### Tanya
 
-Tanya is a public facing (Oracle free tier) server which hosts little websites and APIs
+Tanya is a public facing (Oracle free tier) server which hosts little websites and APIs not connected to tailscale
 
 ### Emilia
 
@@ -56,7 +56,7 @@ make sure sessionVariable SHELL ist set to something that exists!
 
 I don't know why but just comment everything that hast to do with home-manager out
 
-### directly install form github flake
+### directly install from github flake
 
 ```bash
 nix-install --root /mnt --flake github:7h3730b/nix#machine
