@@ -1,10 +1,10 @@
 { ... }: {
   services.openssh = {
     enable = true;
-    # kbdInteractiveAuthentication = false;
+    kbdInteractiveAuthentication = false;
     passwordAuthentication = false;
     forwardX11 = false;
-    permitRootLogin = "without-password";
+    permitRootLogin = "prohibit-password";
     openFirewall = true;
   };
 
