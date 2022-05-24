@@ -15,8 +15,6 @@ in
     [
       ../base.nix
       ./hardware-configuration.nix
-
-      ../../modules/tailscale.nix
     ];
 
   deploy = {
@@ -28,6 +26,11 @@ in
   ssh-server = {
     enable = true;
     ports = [ sshPort ];
+  };
+
+  tailscale = {
+    enable = true;
+    service = true;
   };
 
   boot.loader.grub = {

@@ -1,23 +1,59 @@
 # https://tailscale.com/blog/nixos-minecraft/
-{ pkgs, config, ... }: {
-  services.tailscale.enable = true;
-  environment.systemPackages = [ pkgs.tailscale ];
+{ pkgs, lib, config, ... }:
+with lib;
+let
+  cfg = config.tailscale;
+in {
+  options.tailscale = {
+    enable = mkEnableOption "tailscale";
 
-  networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
-  # networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+    package = mkOption {
+      type = types.package;
+      default = pkgs.tailscale;
+    };
 
-  age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;
-  systemd.services.tailscale-autoauth = {
-   description = "Uses preauth key to connect to tailscale";
+    service = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        if a systemd service should be used to authenticate with tailscale (should only be activated if host key is added in secrets.nix)
+      '';
+    };
 
-   after = [ "network-pre.target" "tailscale.service" ];
-   wants = [ "network-pre.target" "tailscale.service" ];
-   wantedBy = [ "multi-user.target" ];
-
-   serviceConfig.Type = "oneshot";
-
-   script = with pkgs; ''
-     ${tailscale}/bin/tailscale up --authkey="$(cat ${config.age.secrets.tailscale-preauthkey.path})" --accept-dns=false
-   '';
+    magicDNS = mkOption {
+      type = types.str;
+      default = "false";
+      description = ''
+        sets --accept-dns (should be true or false)
+      '';
+    };
   };
+
+  config = mkIf cfg.enable (mkMerge 
+  [{
+    services.tailscale = {
+      inherit (cfg) enable package;
+    };
+    environment.systemPackages = [ cfg.package ];
+
+    networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
+    # networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+  }
+    (mkIf cfg.service {
+      age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;
+      systemd.services.tailscale-autoauth = {
+        description = "Uses preauth key to connect to tailscale";
+
+        after = [ "network-pre.target" "tailscale.service" ];
+        wants = [ "network-pre.target" "tailscale.service" ];
+        wantedBy = [ "multi-user.target" ];
+
+        serviceConfig.Type = "oneshot";
+
+        script = ''
+          ${cfg.package}/bin/tailscale up --authkey="$(cat ${config.age.secrets.tailscale-preauthkey.path})" --accept-dns=${cfg.magicDNS}
+        '';
+      };
+    })    
+  ]);
 }

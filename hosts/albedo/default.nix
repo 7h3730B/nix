@@ -15,7 +15,6 @@ in
       ../base.nix
       ./hardware-configuration.nix
 
-      ../../modules/tailscale.nix
       ../../modules/xrdp.nix
       ../../modules/fonts.nix
 
@@ -27,6 +26,10 @@ in
     enable = true;
     passwordAuthentication = true;
     rootKeys = [];
+  };
+
+  tailscale = {
+    enable = true;
   };
 
   boot = {

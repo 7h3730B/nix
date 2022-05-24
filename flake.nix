@@ -22,6 +22,7 @@
         agenix.nixosModules.age
         ./modules/deploy.nix
         ./modules/sshd.nix
+        ./modules/tailscale.nix
       ];
 
       sharedOverlays = [
