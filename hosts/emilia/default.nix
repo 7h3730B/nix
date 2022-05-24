@@ -5,14 +5,14 @@
 , username
 , ... }:
 let
-  hostname = "tanya";
+  hostname = "emilia";
   sshPort = 22;
 in
 {
   system.stateVersion = "21.11";
   deploy = {
     enable = true;
-    ip = "tanya.teo.beer";
+    ip = "emilia.teo.beer";
     port = sshPort;
   };
 
@@ -21,6 +21,7 @@ in
       ../base.nix
       ./hardware-configuration.nix
 
+      ../../modules/tailscale.nix
       ../../modules/sshd.nix
     ];
 
@@ -37,7 +38,7 @@ in
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
   networking.firewall.enable = true;
-  networking.interfaces.ens3.useDHCP = true;
+  networking.interfaces.enp0s3.useDHCP = true;
 
   services = {
     resolved = {
@@ -56,7 +57,22 @@ in
 
   users.defaultUserShell = pkgs.zsh;
   users.users.root = {
-    initialPassword = "tanya123";
+    initialPassword = "emilia123";
+  };
+
+  users.users."${username}" = {
+    description = "${username}";
+    isNormalUser = true;
+    group = "users";
+    extraGroups = [ ];
+    createHome = true;
+    uid = 1000;
+    home = "/home/${username}";
+    initialPassword = "123";
+    useDefaultShell = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHg+H/iAAM1BPI4Ys/c8OpaJMw1RrqIEGmWNY9Gy1X8J teo@albedo"
+    ];
   };
 
   documentation.enable = false;

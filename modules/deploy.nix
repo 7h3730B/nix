@@ -21,6 +21,12 @@ in {
 			default = 22;
 			description = "Change the ssh port";
 		};
+
+		system = mkOption {
+			type = types.string;
+			default = "x86_64-linux";
+			description = "System architecture";
+		};
 	};
 
 	config = { };

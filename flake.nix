@@ -49,7 +49,13 @@
       in
         lib.nixosSystem {
           inherit system;
-          modules = [ configuration { nixpkgs = { inherit pkgs; }; } ] ++ modules ++ extraModules;
+          modules = [
+            configuration {
+              nixpkgs = { inherit pkgs; };
+            }
+          ] ++ modules ++ extraModules ++ [
+            { deploy.system = system; }
+          ];
           specialArgs = {
             inherit 
               (inputs)
@@ -80,6 +86,13 @@
         overlays = sharedOverlays;
       };
 
+      nixosConfigurations."emilia" = nixosSystem {
+        system = "aarch64-linux";
+        configuration = ./hosts/emilia;
+        extraModules = extraModules;
+        overlays = sharedOverlays;
+      };
+
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
       deploy = {
         magicRollback = false;
@@ -99,8 +112,7 @@
               user = "root";
               sshUser = "root";
               sshOpts = [ "-p" (builtins.toString nixosConfig.config.deploy.port) ];
-              # TODO: use system from nixosConfig
-              path = deploy-rs.lib.x86_64-linux.activate.nixos nixosConfig;
+              path = deploy-rs.lib.${nixosConfig.config.deploy.system}.activate.nixos nixosConfig;
             };
           })
           (nixos.lib.filterAttrs
