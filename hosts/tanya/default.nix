@@ -10,21 +10,21 @@ let
 in
 {
   system.stateVersion = "21.11";
+
+  imports =
+    [
+      ../base.nix
+      ./hardware-configuration.nix
+    ];
+
   deploy = {
     enable = true;
     ip = "tanya.teo.beer";
     port = sshPort;
   };
 
-  imports =
-    [
-      ../base.nix
-      ./hardware-configuration.nix
-
-      ../../modules/sshd.nix
-    ];
-
-  services.openssh = {
+  ssh-server = {
+    enable = true;
     ports = [ sshPort ];
   };
 

@@ -21,6 +21,7 @@
         home.nixosModules.home-manager
         agenix.nixosModules.age
         ./modules/deploy.nix
+        ./modules/sshd.nix
       ];
 
       sharedOverlays = [

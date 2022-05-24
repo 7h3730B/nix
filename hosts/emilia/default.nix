@@ -10,11 +10,6 @@ let
 in
 {
   system.stateVersion = "21.11";
-  deploy = {
-    enable = true;
-    ip = "emilia.teo.beer";
-    port = sshPort;
-  };
 
   imports =
     [
@@ -22,10 +17,16 @@ in
       ./hardware-configuration.nix
 
       ../../modules/tailscale.nix
-      ../../modules/sshd.nix
     ];
 
-  services.openssh = {
+  deploy = {
+    enable = true;
+    ip = "emilia.teo.beer";
+    port = sshPort;
+  };
+
+  ssh-server = {
+    enable = true;
     ports = [ sshPort ];
   };
 

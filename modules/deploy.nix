@@ -17,13 +17,13 @@ in {
 		};
 
 		port = mkOption {
-			type = types.int;
+			type = types.port;
 			default = 22;
 			description = "Change the ssh port";
 		};
 
 		system = mkOption {
-			type = types.string;
+			type = types.str;
 			default = "x86_64-linux";
 			description = "System architecture";
 		};

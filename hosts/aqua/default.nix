@@ -11,24 +11,25 @@ let
 in
 {
   system.stateVersion = "21.11";
-  deploy = {
-    enable = true;
-    ip = "aqua.teo.beer";
-    port = sshPort;
-  };
 
   imports =
     [
       ../base.nix
       ./hardware-configuration.nix
 
-      ../../modules/sshd.nix
       ../../modules/tailscale.nix
     ];
 
-  services.openssh = {
+  deploy = {
+    enable = true;
+    ip = "aqua.teo.beer";
+    port = sshPort;
+  };
+
+  ssh-server = {
+    enable = true;
     ports = [ sshPort ];
-    passwordAuthentication = lib.mkOverride 40 true;
+    passwordAuthentication = true;
   };
 
   boot.loader.grub = {
