@@ -16,11 +16,9 @@ in {
     services.nginx = {
       inherit (cfg) enable;
       virtualHosts."${cfg.domain}" = {
-        default = true;
         globalRedirect = "arsch.loch.bayern";
       };
       virtualHosts."rfrtfm.${cfg.domain}" = {
-        default = true;
         globalRedirect = "readfuckerreadthefuckingmanual.com";
       };
     };

@@ -55,10 +55,9 @@
           modules = [
             configuration {
               nixpkgs = { inherit pkgs; };
+              deploy = { inherit system; };
             }
-          ] ++ modules ++ extraModules ++ [
-            { deploy.system = system; }
-          ];
+          ] ++ modules ++ extraModules;
           specialArgs = {
             inherit 
               (inputs)

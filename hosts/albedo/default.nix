@@ -36,6 +36,9 @@ in
     enable = true;
   };
 
+  # compile for arm
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
