@@ -32,6 +32,17 @@ in {
         public keys for authentication
       '';
     };
+
+    fail2ban = {
+      enable = mkOption {
+        type = types.bool;
+        default = true;
+      };
+      ignoreIP = mkOption {
+        type = types.listOf types.str;
+        default = [];
+      };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -44,5 +55,8 @@ in {
       openFirewall = true;
     };
     users.users.root.openssh.authorizedKeys.keys = cfg.rootKeys;
+    services.fail2ban = {
+      inherit (cfg.fail2ban) enable ignoreIP;
+    };
   };
 }
