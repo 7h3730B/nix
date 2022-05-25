@@ -15,7 +15,10 @@ in
     [
       ../base.nix
       ./hardware-configuration.nix
+      ./nginx.nix
     ];
+
+  nginx.enable = true;
 
   deploy = {
     enable = true;
