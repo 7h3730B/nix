@@ -15,7 +15,6 @@ in
       ../base.nix
       ./hardware-configuration.nix
 
-      ../../modules/xrdp.nix
       ../../modules/fonts.nix
 
       ../../profiles/x11.nix
@@ -29,6 +28,11 @@ in
   };
 
   tailscale = {
+    enable = true;
+    service = true;
+  };
+
+  xrdp = {
     enable = true;
   };
 

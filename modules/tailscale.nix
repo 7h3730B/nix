@@ -38,6 +38,8 @@ in {
 
     networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
     # networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+    # little workaround TODO: see if still needed in some time
+    networking.firewall.checkReversePath = "loose";
   }
     (mkIf cfg.service {
       age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;

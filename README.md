@@ -100,6 +100,8 @@ Change to uefi boot, add efi drive and add hdd to boot options then follow: http
 # TODO: 
 
 - set everything up!!!  
+- get deploy to arch working
+- fix tailscale magicDNS
 - switch to erase your darlings with zfs for some things?  
 - draw a graph how everything is connected (home network, tailscale, syncthing) 
 - setup syncthing

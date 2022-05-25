@@ -23,6 +23,7 @@
         ./modules/deploy.nix
         ./modules/sshd.nix
         ./modules/tailscale.nix
+        ./modules/xrdp.nix
       ];
 
       sharedOverlays = [
