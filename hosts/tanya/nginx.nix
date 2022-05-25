@@ -14,7 +14,7 @@ in {
 
   config = mkIf cfg.enable {
     services.nginx = {
-      inherit (cfg.enable);
+      inherit (cfg) enable;
       virtualHosts."${cfg.domain}" = {
         default = true;
         globalRedirect = "arsch.loch.bayern";
