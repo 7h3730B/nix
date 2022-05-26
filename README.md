@@ -93,6 +93,11 @@ If you have a multi user system change TMPDIR in your nix daemon config or just 
     sudo rmdir /tmp && ln -s /var/tmp /tmp
   ```
 
+### another disk space issue
+
+no space in /boot seems to occur especially on arm, 'cause my kernel img are not compressed.  
+Just delete all old generations and rm alle images in /boot/kernels and it should work for one build again :)
+
 ### Proxmox install
 
 Change to uefi boot, add efi drive and add hdd to boot options then follow: https://pve.proxmox.com/wiki/OVMF/UEFI_Boot_Entries to add grub as boot option.
