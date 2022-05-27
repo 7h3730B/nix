@@ -5,23 +5,24 @@
 
 {
   imports =
-    [ ];
+    [ (modulesPath + "/profiles/qemu-guest.nix")
+    ];
 
   boot = {
     initrd.availableKernelModules = [ ];
-    initrd.kernelModules = [ ];
+    initrd.kernelModules = [ "nvme" ];
     kernelModules = [ ];
     extraModulePackages = [ ];
 
+    kernelPackages = pkgs.linuxPackages_latest;
     tmpOnTmpfs = true;
   };
 
-  # TODO: get this shit
   fileSystems."/" =
-    { device = "/dev/sda1";
+    { device = "/dev/sda3";
       fsType = "ext4";
     };
 
   swapDevices =
-    [ { device = "/swapfile"; size = 1024; } ];
+    [ { device = "/swapfile"; size = 16384; } ];
 }

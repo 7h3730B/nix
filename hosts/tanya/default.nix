@@ -22,7 +22,7 @@ in
 
   deploy = {
     enable = true;
-    ip = "tanya.teo.beer";
+    ip = "${hostname}.teo.beer";
     port = sshPort;
   };
 
@@ -36,6 +36,8 @@ in
     efiInstallAsRemovable = true;
     device = "nodev";
   };
+
+  zramSwap.enable = true;
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
@@ -59,7 +61,7 @@ in
 
   users.defaultUserShell = pkgs.zsh;
   users.users.root = {
-    initialPassword = "tanya123";
+    initialPassword = "${hostname}123";
   };
 
   documentation.enable = false;

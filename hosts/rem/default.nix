@@ -20,7 +20,7 @@ in
   deploy = {
     enable = true;
     # TODO: get IP
-    ip = "";
+    ip = "192.168.178.69";
     port = sshPort;
   };
 
@@ -29,11 +29,18 @@ in
     ports = [ sshPort ];
   };
 
+  tailscale = {
+    enable = true;
+    service = true;
+  };
+  
+  zramSwap.enable = true;
+
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
   networking.firewall.enable = true;
   # get right interface name
-  networking.interfaces.ens3.useDHCP = true;
+  networking.interfaces.eth0.useDHCP = true;
 
   services = {
     resolved = {
@@ -52,7 +59,7 @@ in
 
   users.defaultUserShell = pkgs.zsh;
   users.users.root = {
-    initialPassword = "rem123";
+    initialPassword = "${hostname}123";
   };
 
   documentation.enable = false;

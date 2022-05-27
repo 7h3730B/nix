@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ./base.nix
   ];
@@ -19,6 +19,6 @@
     };
   };
   environment.systemPackages = with pkgs; [
-    raspberrypi-tools
+    libraspberrypi
   ];
 }

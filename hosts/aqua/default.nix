@@ -20,7 +20,7 @@ in
 
   deploy = {
     enable = true;
-    ip = "aqua.teo.beer";
+    ip = "${hostname}.teo.beer";
     port = sshPort;
   };
 
@@ -40,6 +40,8 @@ in
     efiInstallAsRemovable = true;
     device = "nodev";
   };
+
+  zramSwap.enable = true;
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
@@ -63,7 +65,7 @@ in
 
   users.defaultUserShell = pkgs.zsh;
   users.users.root = {
-    initialPassword = "aqua123";
+    initialPassword = "${hostname}123";
   };
   users.users."${username}" = {
     description = "${username}";
@@ -73,7 +75,7 @@ in
     createHome = true;
     uid = 1000;
     home = "/home/${username}";
-    initialPassword = "123";
+    initialPassword = "${hostname}123";
     useDefaultShell = true;
   };
 

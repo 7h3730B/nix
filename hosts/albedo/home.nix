@@ -13,6 +13,11 @@ in
     useUserPackages = true;
   };
 
+  age.secrets.sshConfig = {
+    file = ../../secrets.ssh.config;
+    owner = "${username}";
+  };
+
   home-manager.users."${username}" = {
     imports = [
       ../../profiles/home/full-graphical.nix

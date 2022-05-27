@@ -88,9 +88,22 @@
         overlays = sharedOverlays;
       };
 
+      nixosConfigurations."kazuma" = nixosSystem {
+        configuration = ./hosts/kazuma;
+        extraModules = extraModules;
+        overlays = sharedOverlays;
+      };
+
       nixosConfigurations."emilia" = nixosSystem {
         system = "aarch64-linux";
         configuration = ./hosts/emilia;
+        extraModules = extraModules;
+        overlays = sharedOverlays;
+      };
+
+      nixosConfigurations."rem" = nixosSystem {
+        system = "aarch64-linux";
+        configuration = ./hosts/rem;
         extraModules = extraModules;
         overlays = sharedOverlays;
       };

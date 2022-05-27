@@ -3,9 +3,10 @@
 , nixos
 , home
 , username
+, lib
 , ... }:
 let
-  hostname = "emilia";
+  hostname = "kazuma";
   sshPort = 22;
 in
 {
@@ -28,23 +29,19 @@ in
     ports = [ sshPort ];
   };
 
-  tailscale = {
-    enable = true;
-    service = true;
-  };
+  nix.maxJobs = lib.mkDefault 4;
+
+  # compile for arm
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   boot.loader.grub = {
-    efiSupport = true;
-    efiInstallAsRemovable = true;
-    device = "nodev";
+    device = "/dev/sda";
   };
-
-  zramSwap.enable = true;
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
   networking.firewall.enable = true;
-  networking.interfaces.enp0s3.useDHCP = true;
+  networking.interfaces.eth0.useDHCP = true;
 
   services = {
     resolved = {
@@ -65,21 +62,6 @@ in
   users.users.root = {
     initialPassword = "${hostname}123";
   };
-
-  # users.users."${username}" = {
-  #   description = "${username}";
-  #   isNormalUser = true;
-  #   group = "users";
-  #   extraGroups = [ ];
-  #   createHome = true;
-  #   uid = 1000;
-  #   home = "/home/${username}";
-  #   initialPassword = "${hostname}123";
-  #   useDefaultShell = true;
-  #   openssh.authorizedKeys.keys = [
-  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHg+H/iAAM1BPI4Ys/c8OpaJMw1RrqIEGmWNY9Gy1X8J teo@albedo"
-  #   ];
-  # };
 
   documentation.enable = false;
   environment.noXlibs = true;

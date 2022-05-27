@@ -3,6 +3,7 @@
 , nixos
 , home
 , username
+, lib
 , ... }:
 let
   hostname = "albedo";
@@ -36,6 +37,24 @@ in
     enable = true;
   };
 
+  nix.maxJobs = lib.mkDefault 2;
+
+  nix.buildMachines = [{
+    systems = [ "x86_64-linux" "aarch64-linux" ];
+    maxJobs = 4;
+    speedFactor = 2;
+    suportedFeatures = [ "benchmark" "big-parallel" "kvm" ];
+    # TODO: remove this in favor of sshconfig
+    hostName = "kazuma.teo.beer";
+    sshUser = "root";
+    sshKey = "/home/teo/id_ed25519";
+  }];
+  nix.distributedBuilds = true;
+
+  nix.extraOptions = ''
+    builders-use-substitues = true
+  '';
+
   # compile for arm
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -51,6 +70,8 @@ in
       };
     };
   };
+
+  zramSwap.enable = true;
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";

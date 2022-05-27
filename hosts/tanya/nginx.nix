@@ -15,11 +15,20 @@ in {
   config = mkIf cfg.enable {
     services.nginx = {
       inherit (cfg) enable;
-      virtualHosts."${cfg.domain}" = {
-        globalRedirect = "arsch.loch.bayern";
-      };
-      virtualHosts."rfrtfm.${cfg.domain}" = {
-        globalRedirect = "readfuckerreadthefuckingmanual.com";
+
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+
+      virtualHosts = {
+        "${cfg.domain}" = {
+          default = true;
+          globalRedirect = "arsch.loch.bayern";
+        };
+        "rfrtfm.${cfg.domain}" = {
+          globalRedirect = "readfuckerreadthefuckingmanual.com";
+        };
       };
     };
 
