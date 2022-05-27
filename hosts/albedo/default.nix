@@ -53,7 +53,7 @@ in
     # TODO: remove this in favor of sshconfig
     hostName = "kazuma.teo.beer";
     sshUser = "root";
-    sshKey = "/home/teo/id_ed25519";
+    sshKey = "/home/teo/.ssh/id_ed25519";
   }];
   nix.distributedBuilds = true;
 
