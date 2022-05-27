@@ -17,6 +17,11 @@ in
       ./hardware-configuration.nix
     ];
 
+  base = {
+    DNSOverTLS = true;
+    zramSwap = true;
+  };
+
   deploy = {
     enable = true;
     # TODO: get IP
@@ -33,25 +38,12 @@ in
     enable = true;
     service = true;
   };
-  
-  zramSwap.enable = true;
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
   networking.firewall.enable = true;
   # get right interface name
   networking.interfaces.eth0.useDHCP = true;
-
-  services = {
-    resolved = {
-      enable = true;
-      dnssec = "true";
-      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-      extraConfig = ''
-        DNSOverTLS=yes
-      '';
-    };
-  };
 
   security.protectKernelImage = true;
 

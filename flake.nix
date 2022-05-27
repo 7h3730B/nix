@@ -20,6 +20,7 @@
       extraModules = [
         home.nixosModules.home-manager
         agenix.nixosModules.age
+        ./modules/base.nix
         ./modules/deploy.nix
         ./modules/sshd.nix
         ./modules/tailscale.nix

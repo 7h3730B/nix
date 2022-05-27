@@ -22,6 +22,11 @@ in
       ./home.nix
     ];
   
+  base = {
+    DNSOverTLS = true;
+    zramSwap = true;
+  };
+  
   ssh-server = {
     enable = true;
     passwordAuthentication = true;
@@ -43,7 +48,7 @@ in
     systems = [ "x86_64-linux" "aarch64-linux" ];
     maxJobs = 4;
     speedFactor = 2;
-    suportedFeatures = [ "benchmark" "big-parallel" "kvm" ];
+    supportedFeatures = [ "benchmark" "big-parallel" "kvm" ];
     # TODO: remove this in favor of sshconfig
     hostName = "kazuma.teo.beer";
     sshUser = "root";
@@ -71,8 +76,6 @@ in
     };
   };
 
-  zramSwap.enable = true;
-
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
   networking.interfaces.ens18.useDHCP = true;
@@ -91,17 +94,6 @@ in
     helvum
     tldr
   ];
-
-  services = {
-    resolved = {
-      enable = true;
-      dnssec = "true";
-      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-      extraConfig = ''
-        DNSOverTLS=yes
-      '';
-    };
-  };
 
   security.protectKernelImage = true;
 

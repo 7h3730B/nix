@@ -6,6 +6,8 @@
 , lib
 , ... }:
 let
+  # don't set the hostname gets set from dhcps, nixos doesn't allow this hostname and contabo needs it 
+  # hostname = "vmd87218.contaboserver.net";
   hostname = "kazuma";
   sshPort = 22;
 in
@@ -18,6 +20,11 @@ in
       ./hardware-configuration.nix
     ];
 
+  base = {
+    DNSOverTLS = true;
+    zramSwap = true;
+  };
+
   deploy = {
     enable = true;
     ip = "${hostname}.teo.beer";
@@ -29,40 +36,31 @@ in
     ports = [ sshPort ];
   };
 
-  nix.maxJobs = lib.mkDefault 4;
+  # nix.maxJobs = lib.mkDefault 4;
 
   # compile for arm
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   boot.loader.grub = {
+    enable = true;
+    version = 2;
     device = "/dev/sda";
   };
 
   networking.useDHCP = false;
-  networking.hostName = "${hostname}";
+  # networking.hostName = "${hostname}";
   networking.firewall.enable = true;
-  networking.interfaces.eth0.useDHCP = true;
+  networking.interfaces.ens18.useDHCP = true;
 
-  services = {
-    resolved = {
-      enable = true;
-      dnssec = "true";
-      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-      extraConfig = ''
-        DNSOverTLS=yes
-      '';
-    };
-  };
-
-  security.protectKernelImage = true;
+  # security.protectKernelImage = true;
 
   nix.trustedUsers = [ "root" ];
 
   users.defaultUserShell = pkgs.zsh;
   users.users.root = {
-    initialPassword = "${hostname}123";
+    initialPassword = "kazuma123";
   };
 
-  documentation.enable = false;
-  environment.noXlibs = true;
+  # documentation.enable = false;
+  # environment.noXlibs = true;
 }

@@ -6,7 +6,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_5_4;
 
-  documentation.enable = false;
+  # documentation.enable = false;
   # sdImage.compressImage = false;
 
   systemd.services.sshd.wantedBy = lib.mkOverride 40 [ "multi-user.target" ];

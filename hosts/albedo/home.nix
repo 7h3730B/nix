@@ -13,10 +13,10 @@ in
     useUserPackages = true;
   };
 
-  age.secrets.sshConfig = {
-    file = ../../secrets.ssh.config;
-    owner = "${username}";
-  };
+  # age.secrets.sshConfig = {
+  #   file = ../../secrets.ssh.config;
+  #   owner = "${username}";
+  # };
 
   home-manager.users."${username}" = {
     imports = [

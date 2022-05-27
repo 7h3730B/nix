@@ -18,6 +18,11 @@ in
       ./hardware-configuration.nix
     ];
 
+  base = {
+    DNSOverTLS = true;
+    zramSwap = true;
+  };
+
   deploy = {
     enable = true;
     ip = "${hostname}.teo.beer";
@@ -41,23 +46,10 @@ in
     device = "nodev";
   };
 
-  zramSwap.enable = true;
-
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
   networking.firewall.enable = true;
   networking.interfaces.ens3.useDHCP = true;
-
-  services = {
-    resolved = {
-      enable = true;
-      dnssec = "true";
-      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-      extraConfig = ''
-        DNSOverTLS=yes
-      '';
-    };
-  };
 
   security.protectKernelImage = true;
 
