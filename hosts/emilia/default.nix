@@ -18,6 +18,7 @@ in
     ];
 
   base = {
+    enable = true;
     DNSOverTLS = true;
     zramSwap = true;
   };

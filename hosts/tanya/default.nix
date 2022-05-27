@@ -21,6 +21,7 @@ in
   nginx.enable = true;
 
   base = {
+    enable = true;
     DNSOverTLS = true;
     zramSwap = true;
   };
