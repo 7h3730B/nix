@@ -102,6 +102,10 @@ Just delete all old generations and rm alle images in /boot/kernels and it shoul
 
 Change to uefi boot, add efi drive and add hdd to boot options then follow: https://pve.proxmox.com/wiki/OVMF/UEFI_Boot_Entries to add grub as boot option.
 
+### Host key
+
+if builder not available, 'cause of host key copy known_hosts from /home to /etc/ssh
+
 # TODO: 
 
 - set everything up!!!  
