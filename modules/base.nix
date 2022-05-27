@@ -1,4 +1,5 @@
-{ pkgs, lib, configs, ... }:
+{ pkgs, lib, config, ... }:
+with lib;
 let
   cfg = config.base;
 in {
@@ -20,7 +21,7 @@ in {
   [{
     zramSwap.enable = cfg.zramSwap;
   }
-  mkIf cfg.DNSOverTLS {
+  (mkIf cfg.DNSOverTLS {
     services = {
       resolved = {
         enable = true;
@@ -31,5 +32,5 @@ in {
         '';
       };
     };
-  }]);
+  })]);
 }

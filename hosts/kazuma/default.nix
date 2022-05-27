@@ -6,8 +6,6 @@
 , lib
 , ... }:
 let
-  # don't set the hostname gets set from dhcps, nixos doesn't allow this hostname and contabo needs it 
-  # hostname = "vmd87218.contaboserver.net";
   hostname = "kazuma";
   sshPort = 22;
 in
@@ -36,10 +34,10 @@ in
     ports = [ sshPort ];
   };
 
-  # nix.maxJobs = lib.mkDefault 4;
+  nix.maxJobs = lib.mkDefault 4;
 
   # compile for arm
-  # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   boot.loader.grub = {
     enable = true;
@@ -48,11 +46,11 @@ in
   };
 
   networking.useDHCP = false;
-  # networking.hostName = "${hostname}";
+  networking.hostName = "${hostname}";
   networking.firewall.enable = true;
   networking.interfaces.ens18.useDHCP = true;
 
-  # security.protectKernelImage = true;
+  security.protectKernelImage = true;
 
   nix.trustedUsers = [ "root" ];
 
@@ -61,6 +59,6 @@ in
     initialPassword = "kazuma123";
   };
 
-  # documentation.enable = false;
-  # environment.noXlibs = true;
+  documentation.enable = false;
+  environment.noXlibs = true;
 }
