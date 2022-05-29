@@ -109,6 +109,13 @@
         overlays = sharedOverlays;
       };
 
+      nixosConfigurations."ram" = nixosSystem {
+        system = "aarch64-linux";
+        configuration = ./hosts/ram;
+        extraModules = extraModules;
+        overlays = sharedOverlays;
+      };
+
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
       deploy = {
         magicRollback = false;

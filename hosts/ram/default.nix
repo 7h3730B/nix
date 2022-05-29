@@ -5,7 +5,7 @@
 , username
 , ... }:
 let
-  hostname = "rem";
+  hostname = "ram";
   sshPort = 22;
 in
 {
@@ -25,7 +25,7 @@ in
 
   deploy = {
     enable = true;
-    ip = "192.168.178.69";
+    ip = "192.168.178.101";
     port = sshPort;
   };
 
@@ -34,10 +34,10 @@ in
     ports = [ sshPort ];
   };
 
-  # tailscale = {
-  #   enable = true;
-  #   service = true;
-  # };
+  tailscale = {
+    enable = true;
+    service = true;
+  };
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";

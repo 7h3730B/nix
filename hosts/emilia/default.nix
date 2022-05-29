@@ -3,6 +3,7 @@
 , nixos
 , home
 , username
+, config
 , ... }:
 let
   hostname = "emilia";
@@ -58,21 +59,6 @@ in
   users.users.root = {
     initialPassword = "${hostname}123";
   };
-
-  # users.users."${username}" = {
-  #   description = "${username}";
-  #   isNormalUser = true;
-  #   group = "users";
-  #   extraGroups = [ ];
-  #   createHome = true;
-  #   uid = 1000;
-  #   home = "/home/${username}";
-  #   initialPassword = "${hostname}123";
-  #   useDefaultShell = true;
-  #   openssh.authorizedKeys.keys = [
-  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHg+H/iAAM1BPI4Ys/c8OpaJMw1RrqIEGmWNY9Gy1X8J teo@albedo"
-  #   ];
-  # };
 
   documentation.enable = false;
   environment.noXlibs = true;
