@@ -38,6 +38,7 @@ in
   tailscale = {
     enable = true;
     service = true;
+    exitNode = "true";
   };
 
   boot.loader.grub = {

@@ -27,6 +27,14 @@ in {
         sets --accept-dns (should be true or false)
       '';
     };
+
+    exitNode = mkOption {
+      type = types.str;
+      default = "false";
+      description = ''
+        sets --advertise-exit-node and ip forwarding
+      '';
+    };
   };
 
   config = mkIf cfg.enable (mkMerge 
@@ -53,9 +61,13 @@ in {
         serviceConfig.Type = "oneshot";
 
         script = ''
-          ${cfg.package}/bin/tailscale up --authkey="$(cat ${config.age.secrets.tailscale-preauthkey.path})" --accept-dns=${cfg.magicDNS}
+          ${cfg.package}/bin/tailscale up --authkey="$(cat ${config.age.secrets.tailscale-preauthkey.path})" --accept-dns=${cfg.magicDNS} --advertise-exit-node=${cfg.exitNode}
         '';
       };
     })    
+    (mkIf (cfg.exitNode != "false") {
+      boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+      boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
+    })
   ]);
 }
