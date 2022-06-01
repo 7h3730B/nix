@@ -13,7 +13,18 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.nginx = {
+    security.acme = {
+      defaults.email = "teo.sb@proton.me";
+      acceptTerms = true;
+    };
+    services.nginx = 
+    let
+      redirect = host: {
+        enableACME = true;
+        forceSSL = true;
+        globalRedirect = host;
+      };
+    in {
       inherit (cfg) enable;
 
       recommendedGzipSettings = true;
@@ -22,12 +33,15 @@ in {
       recommendedTlsSettings = true;
 
       virtualHosts = {
-        "${cfg.domain}" = {
-          default = true;
-          globalRedirect = "arsch.loch.bayern";
-        };
-        "rfrtfm.${cfg.domain}" = {
-          globalRedirect = "readfuckerreadthefuckingmanual.com";
+        "${cfg.domain}" = { default = true; } // redirect "arsch.loch.bayern";
+        "rfrtfm.${cfg.domain}" = redirect "readfuckerreadthefuckingmanual.com";
+        "ip.${cfg.domain}" = {
+          enableACME = true;
+          forceSSL = true;
+          extraConfig = ''
+            default_type text/plain;
+            return 200 "$remote_addr\n";
+          '';
         };
       };
     };
