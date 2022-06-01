@@ -7,7 +7,7 @@
 , ... }:
 let
   hostname = "emilia";
-  sshPort = 22;
+  sshPort = 4444;
 in
 {
   system.stateVersion = "21.11";
@@ -38,7 +38,6 @@ in
   tailscale = {
     enable = true;
     service = true;
-    exitNode = "true";
   };
 
   boot.loader.grub = {

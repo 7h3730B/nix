@@ -14,6 +14,8 @@
     kernelModules = [ ];
     extraModulePackages = [ ];
 
+    # TODO: see if this makes a difference
+    # kernelPackages = pkgs.linuxPackages_xanmod;
     kernelPackages = pkgs.linuxPackages_latest;
     tmpOnTmpfs = true;
   };

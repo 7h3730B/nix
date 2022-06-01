@@ -7,7 +7,7 @@
 , ... }:
 let
   hostname = "kazuma";
-  sshPort = 22;
+  sshPort = 4444;
 in
 {
   system.stateVersion = "21.11";
@@ -57,7 +57,7 @@ in
 
   users.defaultUserShell = pkgs.zsh;
   users.users.root = {
-    initialPassword = "kazuma123";
+    initialPassword = "${hostname}123";
   };
 
   documentation.enable = false;

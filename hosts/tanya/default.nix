@@ -6,7 +6,7 @@
 , ... }:
 let
   hostname = "tanya";
-  sshPort = 22;
+  sshPort = 4444;
 in
 {
   system.stateVersion = "21.11";
