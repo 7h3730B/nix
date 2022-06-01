@@ -34,10 +34,10 @@ in
     ports = [ sshPort ];
   };
 
-  # tailscale = {
-  #   enable = true;
-  #   service = true;
-  # };
+  tailscale = {
+    enable = true;
+    service = true;
+  };
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";
