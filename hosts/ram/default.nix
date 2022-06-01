@@ -3,6 +3,7 @@
 , nixos
 , home
 , username
+, config
 , ... }:
 let
   hostname = "ram";
@@ -37,6 +38,18 @@ in
   tailscale = {
     enable = true;
     service = true;
+    exitNode = "true";
+  };
+
+  age.secrets.zncConf = {
+    file = ../../secrets/znc.conf;
+    owner = "znc";
+  };
+  services.znc = {
+    enable = true;
+    mutable = false;
+    openFirewall = false;
+    configFile = config.age.secrets.zncConf.path;
   };
 
   networking.useDHCP = false;
