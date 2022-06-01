@@ -22,7 +22,7 @@ Ram is a raspberry pi and should be there to monitor all other machines (also ta
 
 ### Megumin
 
-Megumin is my old laptop. I don't know yet what to do with it but I will probably use it for tasks which need to run overnight or maybe as a steam cache? Seems interesting.
+Megumin is my wsl2 config
 
 ### Aqua
 
@@ -55,6 +55,10 @@ make sure sessionVariable SHELL ist set to something that exists!
 ### RestrictedPathError
 
 I don't know why but just comment everything that hast to do with home-manager out
+
+### Things not working (Oracle cloud)
+
+make sure Oracle firewall is open.
 
 ### directly install from github flake
 
