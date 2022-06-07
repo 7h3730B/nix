@@ -26,6 +26,7 @@ in
     enable = true;
     DNSOverTLS = true;
     zramSwap = true;
+    networkTweaks = true;
   };
   
   ssh-server = {
@@ -50,12 +51,19 @@ in
     maxJobs = 4;
     speedFactor = 2;
     supportedFeatures = [ "benchmark" "big-parallel" "kvm" ];
-    # TODO: remove this in favor of sshconfig
-    hostName = "kazuma.teo.beer";
-    sshUser = "root";
-    sshKey = "/home/teo/.ssh/id_ed25519";
+    hostName = "kazuma";
   }];
   nix.distributedBuilds = true;
+
+  # move to encrypted secrets and create build user on kazuma host
+  programs.ssh.extraConfig = ''
+    Host kazuma
+      HostName kazuma.teo.beer
+      Port 4444
+      User root
+      IdentitiesOnly yes
+      IdentityFile /home/teo/.ssh/id_ed25519
+  '';
 
   nix.extraOptions = ''
     builders-use-substitutes = true

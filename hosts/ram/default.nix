@@ -22,6 +22,7 @@ in
     enable = true;
     DNSOverTLS = true;
     zramSwap = false;
+    networkTweaks = true;
   };
 
   deploy = {
