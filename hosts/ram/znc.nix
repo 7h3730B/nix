@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   age.secrets.zncConf = {
     file = ../../secrets/znc.conf;
     owner = "znc";
@@ -9,5 +9,4 @@
     configFile = config.age.secrets.zncConf.path;
   };
   networking.firewall.allowedTCPPorts = [ 1025 ];
-
 }
