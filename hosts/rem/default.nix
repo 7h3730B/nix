@@ -21,6 +21,7 @@ in
     enable = true;
     DNSOverTLS = true;
     zramSwap = false;
+    networkTweaks = true;
   };
 
   deploy = {
@@ -33,6 +34,13 @@ in
     enable = true;
     ports = [ sshPort ];
   };
+
+  # age.secrets.wpaSupplicantConf = {
+  #   file = ../../secrets/wpa_supplicant.conf;
+  #   path = "/etc/wpa_supplicant.conf";
+  # };
+  # hardware.enableRedistributableFirmware = true;
+  # networking.wireless.enable = true;
 
   # tailscale = {
   #   enable = true;

@@ -16,6 +16,7 @@ in
     [
       ../base-pi3.nix
       ./hardware-configuration.nix
+      ./znc.nix
     ];
 
   base = {
@@ -40,17 +41,6 @@ in
     enable = true;
     service = true;
     exitNode = "true";
-  };
-
-  age.secrets.zncConf = {
-    file = ../../secrets/znc.conf;
-    owner = "znc";
-  };
-  services.znc = {
-    enable = true;
-    mutable = false;
-    openFirewall = false;
-    configFile = config.age.secrets.zncConf.path;
   };
 
   networking.useDHCP = false;
