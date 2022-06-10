@@ -8,9 +8,10 @@
     home.url = "github:nix-community/home-manager";
     deploy-rs.url = "github:serokell/deploy-rs";
     flake-utils.url = "github:numtide/flake-utils";
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
 
-  outputs = { self, unstable, nixos, home, agenix, deploy-rs, flake-utils, ... }@inputs: 
+  outputs = { self, unstable, nixos, home, agenix, deploy-rs, flake-utils, nixos-wsl, ... }@inputs: 
     let
       inherit (nixos) lib;
 
@@ -56,7 +57,6 @@
           modules = [
             configuration {
               nixpkgs = { inherit pkgs; };
-              deploy = { inherit system; };
             }
           ] ++ modules ++ extraModules;
           specialArgs = {
@@ -64,7 +64,8 @@
               (inputs)
               unstable
               nixos
-              home;
+              home
+              nixos-wsl;
             inherit
               username;
           } // specialArgs;
@@ -73,46 +74,52 @@
     {
       nixosConfigurations."albedo" = nixosSystem {
         configuration = ./hosts/albedo;
-        extraModules = extraModules;
+        inherit extraModules;
         overlays = sharedOverlays;
       };
 
       nixosConfigurations."aqua" = nixosSystem {
         configuration = ./hosts/aqua;
-        extraModules = extraModules;
+        inherit extraModules;
         overlays = sharedOverlays;
       };
 
       nixosConfigurations."tanya" = nixosSystem {
         configuration = ./hosts/tanya;
-        extraModules = extraModules;
+        inherit extraModules;
         overlays = sharedOverlays;
       };
 
       nixosConfigurations."kazuma" = nixosSystem {
         configuration = ./hosts/kazuma;
-        extraModules = extraModules;
+        inherit extraModules;
         overlays = sharedOverlays;
       };
 
       nixosConfigurations."emilia" = nixosSystem {
         system = "aarch64-linux";
         configuration = ./hosts/emilia;
-        extraModules = extraModules;
+        inherit extraModules;
         overlays = sharedOverlays;
       };
 
       nixosConfigurations."rem" = nixosSystem {
         system = "aarch64-linux";
         configuration = ./hosts/rem;
-        extraModules = extraModules;
+        inherit extraModules;
         overlays = sharedOverlays;
       };
 
       nixosConfigurations."ram" = nixosSystem {
         system = "aarch64-linux";
         configuration = ./hosts/ram;
-        extraModules = extraModules;
+        inherit extraModules;
+        overlays = sharedOverlays;
+      };
+
+      nixosConfigurations."megumin" = nixosSystem {
+        configuration = ./hosts/megumin;
+        inherit extraModules;
         overlays = sharedOverlays;
       };
 
@@ -135,7 +142,7 @@
               user = "root";
               sshUser = "root";
               sshOpts = [ "-p" (builtins.toString nixosConfig.config.deploy.port) ];
-              path = deploy-rs.lib.${nixosConfig.config.deploy.system}.activate.nixos nixosConfig;
+              path = deploy-rs.lib.${nixosConfig.config.nixpkgs.system}.activate.nixos nixosConfig;
             };
           })
           (nixos.lib.filterAttrs

@@ -48,7 +48,7 @@
   };
 
   users.motd = with config; ''
-    Host:     ${networking.hostName}
+    Host:     ${networking.hostName} (${nixpkgs.system})
     OS:       ${system.nixos.release} (${system.nixos.codeName})
     Version:  ${system.nixos.version}
     Kernel:   ${boot.kernelPackages.kernel.version}
