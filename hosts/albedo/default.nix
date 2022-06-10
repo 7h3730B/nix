@@ -50,7 +50,7 @@ in
     systems = [ "x86_64-linux" "aarch64-linux" ];
     maxJobs = 4;
     speedFactor = 2;
-    supportedFeatures = [ "benchmark" "big-parallel" "kvm" ];
+    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
     hostName = "kazuma";
   }];
   nix.distributedBuilds = true;
