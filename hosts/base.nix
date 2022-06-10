@@ -5,6 +5,7 @@
 , username
 , colorscheme
 , palette
+, config
 , ... }: {
   nix = {
     package = pkgs.nixUnstable;
@@ -45,6 +46,14 @@
       options = "--delete-older-than 30d";
     };
   };
+
+  users.motd = with config; ''
+    Host:     ${networking.hostName}
+    OS:       ${system.nixos.release} (${system.nixos.codeName})
+    Version:  ${system.nixos.version}
+    Kernel:   ${boot.kernelPackages.kernel.version}
+
+  '';
 
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "Europe/Amsterdam";
