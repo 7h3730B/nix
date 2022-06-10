@@ -12,11 +12,11 @@ Is my main machine there all the work is done, currently it runs in a VM.
 
 Connected to tailscale
 
-### Rem
-
-Rem is a raspberry pi in my home network also connected to tailscale. It runs all private stuff, like RSS feed manager, bookmark manager, irc bouncer, a WiFi access point and other stuff i don't know yet.  
-
 ### Ram
+
+Rem is a raspberry pi in my home network also connected to tailscale and provide a exit node. It runs all private stuff, like RSS feed manager, bookmark manager, irc bouncer, a WiFi access point and other stuff i don't know yet.  
+
+### Rem
 
 Ram is a raspberry pi and should be there to monitor all other machines (also tailscale).
 
@@ -26,9 +26,9 @@ Megumin is my wsl2 config
 
 ### Aqua
 
-Aqua should be a really hardened server, and a pretty cheap VPS in the cloud (Oracle free tier 1G server?). It only purpose is to have a public facing ssh and connect to my tailscale network.
+Aqua is a "hardened" server, and a pretty cheap VPS in the cloud (Oracle free tier 1G server). It only purpose is to have a public facing ssh and connect to my tailscale network.
 
-This should allow my to connect to all machines in my tailscale network without the machine I'm working from to be connected to it. (ssh tunneling is awesome).
+This allows me to connect to all machines in my tailscale network without the machine I'm working from to be connected to it. (ssh tunneling is awesome).
 
 ### Tanya
 
