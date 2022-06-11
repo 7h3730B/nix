@@ -3,7 +3,8 @@
 with lib;
 let
   cfg = config.tailscale;
-in {
+in
+{
   options.tailscale = {
     enable = mkEnableOption "tailscale";
 
@@ -37,37 +38,36 @@ in {
     };
   };
 
-  config = mkIf cfg.enable (mkMerge 
-  [{
-    services.tailscale = {
-      inherit (cfg) enable package;
-    };
-    environment.systemPackages = [ cfg.package ];
-
-    networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
-    # networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
-    # little workaround TODO: see if still needed in some time
-    networking.firewall.checkReversePath = "loose";
-  }
-    (mkIf cfg.service {
-      age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;
-      systemd.services.tailscale-autoauth = {
-        description = "Uses preauth key to connect to tailscale";
-
-        after = [ "network-pre.target" "tailscale.service" ];
-        wants = [ "network-pre.target" "tailscale.service" ];
-        wantedBy = [ "multi-user.target" ];
-
-        serviceConfig.Type = "oneshot";
-
-        script = ''
-          ${cfg.package}/bin/tailscale up --authkey="$(cat ${config.age.secrets.tailscale-preauthkey.path})" --accept-dns=${cfg.magicDNS} --advertise-exit-node=${cfg.exitNode}
-        '';
+  config = mkIf cfg.enable (mkMerge
+    [{
+      services.tailscale = {
+        inherit (cfg) enable package;
       };
-    })    
-    (mkIf (cfg.exitNode != "false") {
-      boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-      boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
-    })
-  ]);
+      environment.systemPackages = [ cfg.package ];
+
+      networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
+      # networking.firewall.allowedUDPPorts = [ config.services.tailscale.port ];
+      # little workaround TODO: see if still needed in some time
+      networking.firewall.checkReversePath = "loose";
+    }
+      (mkIf cfg.service {
+        age.secrets.tailscale-preauthkey.file = ../secrets/tailscale-preauthkey;
+        systemd.services.tailscale-autoauth = {
+          description = "Uses preauth key to connect to tailscale";
+
+          after = [ "network-pre.target" "tailscale.service" ];
+          wants = [ "network-pre.target" "tailscale.service" ];
+          wantedBy = [ "multi-user.target" ];
+
+          serviceConfig.Type = "oneshot";
+
+          script = ''
+            ${cfg.package}/bin/tailscale up --authkey="$(cat ${config.age.secrets.tailscale-preauthkey.path})" --accept-dns=${cfg.magicDNS} --advertise-exit-node=${cfg.exitNode}
+          '';
+        };
+      })
+      (mkIf (cfg.exitNode != "false") {
+        boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+        boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
+      })]);
 }

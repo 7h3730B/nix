@@ -1,7 +1,8 @@
-{ pkgs 
+{ pkgs
 , config
 , lib
-, ... }:
+, ...
+}:
 let
   keybind = key: mods: action: { inherit key mods action; };
   viKeybind = key: mods: action: {

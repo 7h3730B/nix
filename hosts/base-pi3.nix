@@ -5,7 +5,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_5_4;
-    kernelParams = ["cma=256M"];
+    kernelParams = [ "cma=256M" ];
     loader = {
       grub.enable = false;
       raspberryPi = {

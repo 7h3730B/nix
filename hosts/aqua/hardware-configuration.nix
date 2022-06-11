@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot = {
@@ -19,15 +20,17 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/sda1";
+    {
+      device = "/dev/sda1";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3E21-E7C9";
+    {
+      device = "/dev/disk/by-uuid/3E21-E7C9";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/swapfile"; size = 1024; } ];
+    [{ device = "/swapfile"; size = 1024; }];
 }

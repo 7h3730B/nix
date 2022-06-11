@@ -1,7 +1,9 @@
 { pkgs
-, ... }: 
+, ...
+}:
 let
-in {
+in
+{
   programs.zsh = {
     enable = true;
 

@@ -6,7 +6,8 @@
 , colorscheme
 , palette
 , config
-, ... }: {
+, ...
+}: {
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -22,7 +23,7 @@
         "nixpkgs-overlays=${path}/overlays"
         "home-manager=${home}"
       ];
-    
+
     registry = {
       unstable.flake = unstable;
       nixos.flake = nixos;
@@ -39,7 +40,7 @@
       automatic = true;
       dates = [ "19:00" ];
     };
-    
+
     gc = {
       automatic = true;
       dates = "Sun 13:00";

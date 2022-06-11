@@ -3,9 +3,11 @@
 # to /etc/nixos/configuration.nix instead.
 { config, pkgs, modulesPath, nixos-wsl, ... }:
 let
-in {
+in
+{
   imports =
-    [ (modulesPath + "/profiles/minimal.nix")
+    [
+      (modulesPath + "/profiles/minimal.nix")
       nixos-wsl.nixosModules.wsl
     ];
 }

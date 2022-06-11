@@ -3,7 +3,8 @@
 , nixos
 , home
 , username
-, ... }: 
+, ...
+}:
 let
   wallpaper = ../../wallpaper/nix-wallpaper-dracula.png;
 in

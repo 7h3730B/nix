@@ -1,9 +1,11 @@
 { pkgs
 , config
 , lib
-, ... }:
+, ...
+}:
 let
-in {
+in
+{
   services.sxhkd = {
     enable = true;
 
@@ -48,7 +50,7 @@ in {
 
       # Focus workspace or send window to workspace
       "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '{1-9,0}'";
-      
+
       # Preselect ratio of the new windows size
       "super + ctrl + {1-9}" = "bspc node -o .{1-9}";
 

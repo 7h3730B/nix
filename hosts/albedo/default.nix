@@ -4,7 +4,8 @@
 , home
 , username
 , lib
-, ... }:
+, ...
+}:
 let
   hostname = "albedo";
 in
@@ -21,18 +22,18 @@ in
       ../../profiles/x11.nix
       ./home.nix
     ];
-  
+
   base = {
     enable = true;
     DNSOverTLS = true;
     zramSwap = true;
     networkTweaks = true;
   };
-  
+
   ssh-server = {
     enable = true;
     passwordAuthentication = true;
-    rootKeys = [];
+    rootKeys = [ ];
   };
 
   tailscale = {

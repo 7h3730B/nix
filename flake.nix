@@ -11,7 +11,7 @@
     nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
 
-  outputs = { self, unstable, nixos, home, agenix, deploy-rs, flake-utils, nixos-wsl, ... }@inputs: 
+  outputs = { self, unstable, nixos, home, agenix, deploy-rs, flake-utils, nixos-wsl, ... }@inputs:
     let
       inherit (nixos) lib;
 
@@ -41,26 +41,27 @@
       };
 
       nixosSystem =
-      { system ? "x86_64-linux"
-      , configuration ? {}
-      , modules ? []
-      , overlays ? []
-      , extraModules ? []
-      , specialArgs ? {}
-      , ...
-      }:
-      let
-        pkgs = (importPkgs nixos overlays system);
-      in
+        { system ? "x86_64-linux"
+        , configuration ? { }
+        , modules ? [ ]
+        , overlays ? [ ]
+        , extraModules ? [ ]
+        , specialArgs ? { }
+        , ...
+        }:
+        let
+          pkgs = (importPkgs nixos overlays system);
+        in
         lib.nixosSystem {
           inherit system;
           modules = [
-            configuration {
+            configuration
+            {
               nixpkgs = { inherit pkgs; };
             }
           ] ++ modules ++ extraModules;
           specialArgs = {
-            inherit 
+            inherit
               (inputs)
               unstable
               nixos
@@ -69,8 +70,8 @@
             inherit
               username;
           } // specialArgs;
-      };
-    in 
+        };
+    in
     {
       nixosConfigurations."albedo" = nixosSystem {
         configuration = ./hosts/albedo;
@@ -150,11 +151,12 @@
             self.nixosConfigurations);
 
       };
-    } // flake-utils.lib.eachDefaultSystem (system: 
+    } // flake-utils.lib.eachDefaultSystem (system:
       # because of nix > 2.8 issue
       # https://github.com/serokell/deploy-rs/issues/155
       let pkgs = nixos.legacyPackages.${system};
-      in {
+      in
+      {
         devShell = import ./shell.nix { inherit pkgs inputs system; };
       });
 }

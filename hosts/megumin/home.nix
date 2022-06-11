@@ -3,7 +3,8 @@
 , nixos
 , home
 , username
-, ... }: 
+, ...
+}:
 let
 in
 {

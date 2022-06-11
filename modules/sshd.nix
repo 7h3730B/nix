@@ -1,8 +1,9 @@
-{ pkgs, lib, config, ... }: 
+{ pkgs, lib, config, ... }:
 with lib;
 let
   cfg = config.ssh-server;
-in {
+in
+{
   options.ssh-server = {
     enable = mkEnableOption "openssh server";
 
@@ -40,7 +41,7 @@ in {
       };
       ignoreIP = mkOption {
         type = types.listOf types.str;
-        default = [];
+        default = [ ];
       };
     };
   };

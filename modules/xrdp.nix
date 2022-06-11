@@ -1,8 +1,9 @@
-{ pkgs, lib, config, ... }: 
+{ pkgs, lib, config, ... }:
 with lib;
 let
   cfg = config.xrdp;
-in {
+in
+{
   options.xrdp = {
     enable = mkEnableOption "xrdp service";
 

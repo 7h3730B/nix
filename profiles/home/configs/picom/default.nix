@@ -1,7 +1,8 @@
 { pkgs
 , config
 , lib
-, ... }: {
+, ...
+}: {
   services.picom = {
     enable = true;
     backend = "xrender";

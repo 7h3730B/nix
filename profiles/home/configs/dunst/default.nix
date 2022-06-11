@@ -1,10 +1,12 @@
 { pkgs
 , config
 , lib
-, ... }: 
+, ...
+}:
 let
   palette = (import ../../../../palettes);
-in {
+in
+{
   services.dunst = {
     enable = true;
     iconTheme = {
