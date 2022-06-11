@@ -155,10 +155,6 @@
       # https://github.com/serokell/deploy-rs/issues/155
       let pkgs = nixos.legacyPackages.${system};
       in {
-        apps.deploy-rs = deploy-rs.defaultApp."${system}";
-
-        devShells.default = pkgs.mkShell {
-          buildInputs = [ deploy-rs.defaultPackage."${system}" ];
-        };
+        devShell = import ./shell.nix { inherit pkgs inputs system; };
       });
 }

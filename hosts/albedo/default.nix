@@ -72,6 +72,8 @@ in
   # compile for arm
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  services.lorri.enable = true;
+
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;

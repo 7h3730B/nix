@@ -74,7 +74,5 @@
     man-pages
     stdmanpages
     posix_man_pages
-
-    agenix
   ];
 }
