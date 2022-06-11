@@ -21,4 +21,6 @@ in
   "znc.conf".publicKeys = keysForSystems [ "albedo" "ram" ];
 
   "wpa_supplicant.conf".publicKeys = keysForSystems [ "albedo" ];
+
+  "spotifypw.txt".publicKeys = keysForSystems [ "albedo" "ram" ];
 }

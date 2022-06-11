@@ -22,6 +22,12 @@ in
       default = 22;
       description = "Change the ssh port";
     };
+
+    sshUser = mkOption {
+      type = types.str;
+      default = "root";
+      description = "the ssh user";
+    };
   };
 
   config = { };

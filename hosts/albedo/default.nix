@@ -47,33 +47,35 @@ in
 
   nix.maxJobs = lib.mkDefault 2;
 
-  nix.buildMachines = [{
-    systems = [ "x86_64-linux" "aarch64-linux" ];
-    maxJobs = 4;
-    speedFactor = 2;
-    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-    hostName = "kazuma";
-  }];
+  nix.buildMachines = [
+    {
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      maxJobs = 12;
+      speedFactor = 2;
+      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+      hostName = "megumin";
+    }
+  ];
   nix.distributedBuilds = true;
 
   # move to encrypted secrets and create build user on kazuma host
   programs.ssh.extraConfig = ''
-    Host kazuma
-      HostName kazuma.teo.beer
+    Host megumin
+      HostName 192.168.178.58
       Port 4444
-      User root
+      User nixos 
       IdentitiesOnly yes
       IdentityFile /home/teo/.ssh/id_ed25519
   '';
 
   nix.extraOptions = ''
     builders-use-substitutes = true
+    keep-outputs = true
+    keep-derivations = true
   '';
 
   # compile for arm
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-  services.lorri.enable = true;
 
   boot = {
     loader = {

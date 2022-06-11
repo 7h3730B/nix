@@ -3,12 +3,25 @@
 
   inputs = {
     unstable.url = "github:NixOS/nixpkgs/master";
-    nixos.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos.url = "github:NixOS/nixpkgs/nixos-22.05";
+
     agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixos";
+
     home.url = "github:nix-community/home-manager";
+    home.inputs.nixpkgs.follows = "nixos";
+    home.inputs.utils.follows = "flake-utils";
+
     deploy-rs.url = "github:serokell/deploy-rs";
+    deploy-rs.inputs.nixpkgs.follows = "nixos";
+    deploy-rs.inputs.utils.follows = "flake-utils";
+
     flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.inputs.nixpkgs.follows = "nixos";
+
     nixos-wsl.url = "github:nix-community/nixos-wsl";
+    nixos-wsl.inputs.nixpkgs.follows = "nixos";
+    nixos-wsl.inputs.flake-utils.follows = "flake-utils";
   };
 
   outputs = { self, unstable, nixos, home, agenix, deploy-rs, flake-utils, nixos-wsl, ... }@inputs:
@@ -141,7 +154,7 @@
 
             profiles.system = {
               user = "root";
-              sshUser = "root";
+              sshUser = nixosConfig.config.deploy.sshUser;
               sshOpts = [ "-p" (builtins.toString nixosConfig.config.deploy.port) ];
               path = deploy-rs.lib.${nixosConfig.config.nixpkgs.system}.activate.nixos nixosConfig;
             };

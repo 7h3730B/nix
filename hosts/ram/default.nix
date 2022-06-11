@@ -18,6 +18,7 @@ in
       ../base-pi3.nix
       ./hardware-configuration.nix
       ./znc.nix
+      ./spotifyd.nix
     ];
 
   base = {
@@ -37,6 +38,8 @@ in
     enable = true;
     ports = [ sshPort ];
   };
+
+  spotifyd.enable = true;
 
   tailscale = {
     enable = true;

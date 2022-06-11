@@ -4,7 +4,7 @@ let
 in
 with pkgs;
 mkShell {
-  name = "flk";
+  name = "nixos-cfg";
   buildInputs = [
     git
     nixpkgs-fmt
