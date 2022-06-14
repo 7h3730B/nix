@@ -4,6 +4,7 @@
 , home
 , username
 , lib
+, config
 , ...
 }:
 let
@@ -17,6 +18,7 @@ in
     [
       ../base.nix
       ./hardware-configuration.nix
+      ./ark-server.nix
     ];
 
   base = {
@@ -37,10 +39,18 @@ in
     ports = [ sshPort ];
   };
 
-  nix.maxJobs = lib.mkDefault 4;
-
-  # compile for arm
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  age.secrets.arkSettings = {
+    file = ../../secrets/ark-settings.ini;
+    path = "${config.ark-server.dataDir}/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini";
+    owner = "ark-server";
+  };
+  ark-server = {
+    enable = true;
+    openFirewall = true;
+    launchOptions = ''
+      TheIsland?listen?noTributeDownloads=true?PreventDownloadSurvivors=true?PreventDownloadItems=true?PreventDownloadDinos=true?AutoSavePeriodMinutes=5?alwaysNotifyPlayerJoined=true?alwaysNotifyPlayerLeft=true?SessionName=Pumper?RCONEnabled=False?MaxPlayers=5 -NoBattlEye -server -crossplay -log
+    '';
+  };
 
   boot.loader.grub = {
     enable = true;
@@ -63,5 +73,6 @@ in
   };
 
   documentation.enable = false;
-  environment.noXlibs = true;
+  # Needs to be false, so gtk can build and steam-run can build
+  environment.noXlibs = false;
 }

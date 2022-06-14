@@ -14,6 +14,7 @@
       df = "diff";
       lg = "log --oneline";
       p = "push";
+      pf = "push --force-with-lease";
       c = "commmit";
       a = "add";
     };

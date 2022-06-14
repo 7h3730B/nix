@@ -21,8 +21,9 @@ in
     services.nginx =
       let
         redirect = host: {
-          enableACME = true;
-          forceSSL = true;
+          extraConfig = "return 301 https://${host};";
+        };
+        globalRedirect = host: {
           globalRedirect = host;
         };
       in
@@ -35,8 +36,18 @@ in
         recommendedTlsSettings = true;
 
         virtualHosts = {
-          "${cfg.domain}" = { default = true; } // redirect "arsch.loch.bayern";
-          "rfrtfm.${cfg.domain}" = redirect "readfuckerreadthefuckingmanual.com";
+          "${cfg.domain}" = {
+            default = true;
+            enableACME = true;
+            forceSSL = true;
+            locations."/" = redirect "arsch.loch.bayern";
+            locations."/nix" = redirect "github.com/7h3730b/nix";
+            locations."/nixinfect" = redirect "raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect";
+          };
+          "rfrtfm.${cfg.domain}" = {
+            enableACME = true;
+            forceSSL = true;
+          } // globalRedirect "readfuckerreadthefuckingmanual.com";
           "ip.${cfg.domain}" = {
             enableACME = true;
             forceSSL = true;
