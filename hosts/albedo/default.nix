@@ -107,6 +107,7 @@ in
   environment.systemPackages = with pkgs; [
     helvum
     tldr
+    brave
   ];
 
   security.protectKernelImage = true;
