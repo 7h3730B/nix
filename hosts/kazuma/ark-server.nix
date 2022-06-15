@@ -62,10 +62,47 @@ in
           ExecStart = "${steam-run} ${cfg.dataDir}/ShooterGame/Binaries/Linux/ShooterGameServer ${cfg.launchOptions}";
           Restart = "always";
           WorkingDirectory = cfg.dataDir;
+          StateDirectory = "ark-server";
           User = "ark-server";
           Group = "ark-server";
           # Pre start can take a while else results in a infinity loop
           TimeoutSec = "15min";
+          # Security settings
+          # not able to use, 'cause of agenix needing a valid user
+          # DynamicUser = true;
+          PrivateUsers = true;
+          ProtectHostname = true;
+          ProtectClock = true;
+          ProtectKernelTunables = true;
+          ProtectKernelModules = true;
+          ProtectKernelLogs = true;
+          ProtectControlGroups = true;
+          RestrictAddressFamily = [ "AF_UNIX AF_INET AF_INET16" ];
+          LockPersonality = true;
+          RestrictRealTime = true;
+          # SystemCallFilter =
+          #   "~"
+          #   + (concatStringsSep " " [
+          #     "@clock"
+          #     "@cpu-emulation"
+          #     # "@debug"
+          #     "@keyring"
+          #     # "@memlock"
+          #     "@obsolete"
+          #     "@raw-io"
+          #     "@reboot"
+          #     "@resources"
+          #     "@setuid"
+          #     "@swap"
+          #   ]);
+          ProtectHome = "tmpfs";
+          # Should already be set by DynamicUsers
+          RemoveIPC = true;
+          PrivateTmp = true;
+          PrivateDevices = true;
+          NoNewPrivileges = true;
+          RestrictSUIDSGID = true;
+          ProtectSystem = "strict";
         };
         preStart = ''
           ${steamcmd} +runscript ${script}
