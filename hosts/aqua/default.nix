@@ -24,6 +24,7 @@ in
     DNSOverTLS = true;
     zramSwap = true;
     networkTweaks = true;
+    node-exporter = true;
   };
 
   deploy = {

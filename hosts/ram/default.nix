@@ -21,11 +21,13 @@ in
       ./spotifyd.nix
     ];
 
+
   base = {
     enable = true;
     DNSOverTLS = true;
     zramSwap = false;
     networkTweaks = true;
+    node-exporter = true;
   };
 
   deploy = {

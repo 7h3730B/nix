@@ -16,6 +16,7 @@ in
     [
       ../base-pi3.nix
       ./hardware-configuration.nix
+      ./monitoring.nix
     ];
 
   base = {
@@ -23,6 +24,7 @@ in
     DNSOverTLS = true;
     zramSwap = false;
     networkTweaks = true;
+    node-exporter = true;
   };
 
   deploy = {
@@ -34,6 +36,11 @@ in
   ssh-server = {
     enable = true;
     ports = [ sshPort ];
+  };
+
+  monitoring = {
+    enable = true;
+    grafana.domain = "100.74.11.78";
   };
 
   # age.secrets.wpaSupplicantConf = {

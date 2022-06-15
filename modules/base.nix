@@ -21,6 +21,11 @@ in
       type = types.bool;
       default = false;
     };
+
+    node-exporter = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable (mkMerge
@@ -36,6 +41,17 @@ in
             extraConfig = ''
               DNSOverTLS=yes
             '';
+          };
+        };
+      })
+      (mkIf cfg.node-exporter {
+        services.prometheus.exporters = {
+          node = {
+            enable = true;
+            enabledCollectors = [
+              "systemd"
+            ];
+            port = 9002;
           };
         };
       })

@@ -26,4 +26,6 @@ in
   "spotifypw.txt".publicKeys = keysForSystems [ "albedo" "ram" ];
 
   "ark-settings.ini".publicKeys = keysForSystems [ "albedo" "kazuma" ];
+
+  "grafanapw.txt".publicKeys = keysForSystems [ "albedo" "rem" ];
 }
