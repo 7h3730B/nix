@@ -43,10 +43,10 @@ in
   # hardware.enableRedistributableFirmware = true;
   # networking.wireless.enable = true;
 
-  # tailscale = {
-  #   enable = true;
-  #   service = true;
-  # };
+  tailscale = {
+    enable = true;
+    service = true;
+  };
 
   networking.useDHCP = false;
   networking.hostName = "${hostname}";

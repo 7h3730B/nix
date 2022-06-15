@@ -15,7 +15,7 @@ let
   keysForSystems = list: users ++ (builtins.map (s: systems."${s}") list);
 in
 {
-  "tailscale-preauthkey".publicKeys = keysForSystems [ "albedo" "aqua" "emilia" "ram" ];
+  "tailscale-preauthkey".publicKeys = keysForSystems [ "albedo" "aqua" "emilia" "ram" "rem" ];
 
   "ssh.config".publicKeys = keysForSystems [ "albedo" ];
 
