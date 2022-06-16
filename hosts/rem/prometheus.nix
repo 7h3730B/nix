@@ -8,7 +8,7 @@ in {
     services.prometheus = {
       enable = cfg_mon.enable;
       port = cfg.port;
-      globalConfig.scrape_interval = "1m";
+      globalConfig.scrape_interval = "15s";
       # exporters.node.port = 9002;
       scrapeConfigs = [
         {

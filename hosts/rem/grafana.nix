@@ -27,6 +27,9 @@ in {
             editable = false;
           }
         ];
+        dashboards = [
+          { name = "Node Stats Full"; folder = "Common"; options.path = ./grafana-dashboard/node-exporter-full.json; }
+        ];
       };
     };
 
