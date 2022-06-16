@@ -6,7 +6,7 @@ let
   script = pkgs.writeText "install-script" ''
     force_install_dir ${cfg.dataDir}
     login anonymous
-    app_update 376030 validate
+    app_update 376030
     quit
   '';
 in
