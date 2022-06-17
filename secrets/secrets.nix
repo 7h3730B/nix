@@ -1,6 +1,7 @@
 let
   users = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHg+H/iAAM1BPI4Ys/c8OpaJMw1RrqIEGmWNY9Gy1X8J teo@albedo"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIClgut/WhKMP94YUlSY1fGe0UaKfrAMv/mQBoBbLTsB1 teo@megumin"
   ];
 
   systems = {
