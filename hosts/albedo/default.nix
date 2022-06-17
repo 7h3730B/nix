@@ -63,7 +63,7 @@ in
     Host megumin
       HostName 192.168.178.58
       Port 4444
-      User nixos 
+      User teo
       IdentitiesOnly yes
       IdentityFile /home/teo/.ssh/id_ed25519
   '';

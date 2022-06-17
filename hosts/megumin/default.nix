@@ -17,14 +17,28 @@ in
     [
       ../base.nix
       ./hardware-configuration.nix
+      ../../modules/fonts.nix
+      ../../profiles/x11.nix
       ./home.nix
     ];
 
   wsl = {
     enable = true;
     automountPath = "/mnt";
-    defaultUser = "nixos";
+    defaultUser = "teo";
     startMenuLaunchers = true;
+  };
+
+  base = {
+    enable = true;
+    DNSOverTLS = false;
+    zramSwap = false;
+    networkTweaks = false;
+  };
+
+  tailscale = {
+    enable = true;
+    service = true;
   };
 
   # compile for arm
@@ -36,8 +50,25 @@ in
     fail2ban.enable = false;
   };
 
-  users.users.nixos = {
-    shell = "${pkgs.zsh}/bin/zsh";
+  xrdp = {
+    enable = true;
+  };
+
+  security.protectKernelImage = true;
+
+  nix.trustedUsers = [ "root" username ];
+
+  users.defaultUserShell = pkgs.zsh;
+  users.users."${username}" = {
+    description = "${username}";
+    isNormalUser = true;
+    group = "users";
+    extraGroups = [ "audio" "disk" "docker" "networkmanager" "video" "wheel" ];
+    createHome = true;
+    shell = pkgs.zsh;
+    uid = 1000;
+    home = "/home/${username}";
+    initialPassword = "${hostname}123";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHg+H/iAAM1BPI4Ys/c8OpaJMw1RrqIEGmWNY9Gy1X8J teo@albedo"
     ];

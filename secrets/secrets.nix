@@ -10,12 +10,13 @@ let
     kazuma = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAW6Yvi+upXoa1qtBN0GC7kxUJ/D2tRQOy8Jis/rw5Cg root@kazuma";
     ram = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPslo+FB456KPhmezoHtCMImA+ku5G985C7orGdd/PWZ root@ram";
     rem = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINeLvHFgGd9kwQEx6rJXSN3MmNt8uzfwlII6X4qqHk3x root@rem";
+    megumin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOpRRRbEnio3RjxjwbYD6frKNE0KZEGeC5SS3WtT/IVi root@7H3730B";
   };
 
   keysForSystems = list: users ++ (builtins.map (s: systems."${s}") list);
 in
 {
-  "tailscale-preauthkey".publicKeys = keysForSystems [ "albedo" "aqua" "emilia" "ram" "rem" ];
+  "tailscale-preauthkey".publicKeys = keysForSystems [ "albedo" "aqua" "emilia" "ram" "rem" "megumin" ];
 
   "ssh.config".publicKeys = keysForSystems [ "albedo" ];
 
