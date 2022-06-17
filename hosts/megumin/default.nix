@@ -25,7 +25,7 @@ in
   wsl = {
     enable = true;
     automountPath = "/mnt";
-    defaultUser = "teo";
+    defaultUser = "${username}";
     startMenuLaunchers = true;
   };
 

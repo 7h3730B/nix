@@ -53,7 +53,7 @@ in
       };
     };
 
-    services.polybar.config."module/eth".interface = "ens18";
+    services.polybar.config."module/eth".interface = "eth0";
     services.polybar.script = with pkgs; ''
       polybar main &
     '';
