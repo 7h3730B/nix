@@ -48,6 +48,7 @@ in
       BROWSER = "brave";
       TERMINAL = "alacritty";
       SHELL = "${pkgs.zsh}/bin/zsh";
+      SXHKD_SHELL = "${pkgs.bash}/bin/bash";
     };
 
     programs.git = {

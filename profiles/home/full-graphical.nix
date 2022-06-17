@@ -3,6 +3,7 @@
     ./configs/alacritty
     ./configs/bspwm
     ./configs/dunst
+    ./configs/emacs
     ./configs/git
     ./configs/gpg
     ./configs/picom

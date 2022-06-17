@@ -22,9 +22,13 @@
     nixos-wsl.url = "github:nix-community/nixos-wsl";
     nixos-wsl.inputs.nixpkgs.follows = "nixos";
     nixos-wsl.inputs.flake-utils.follows = "flake-utils";
+
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.inputs.nixpkgs.follows = "nixos";
+    emacs-overlay.inputs.flake-utils.follows = "flake-utils";
   };
 
-  outputs = { self, unstable, nixos, home, agenix, deploy-rs, flake-utils, nixos-wsl, ... }@inputs:
+  outputs = { self, unstable, nixos, home, agenix, deploy-rs, flake-utils, nixos-wsl, emacs-overlay, ... }@inputs:
     let
       inherit (nixos) lib;
 
@@ -47,7 +51,7 @@
 
       importPkgs = pkgs: overlays: system: import pkgs {
         inherit system overlays;
-        overlay = [ overlay ] ++ overlays;
+        overlay = [ overlay ] ++ overlays ++ sharedOverlays;
         config = {
           allowUnfree = true;
         };
@@ -89,52 +93,45 @@
       nixosConfigurations."albedo" = nixosSystem {
         configuration = ./hosts/albedo;
         inherit extraModules;
-        overlays = sharedOverlays;
+        overlays = [ emacs-overlay.overlay ];
       };
 
       nixosConfigurations."aqua" = nixosSystem {
         configuration = ./hosts/aqua;
         inherit extraModules;
-        overlays = sharedOverlays;
       };
 
       nixosConfigurations."tanya" = nixosSystem {
         configuration = ./hosts/tanya;
         inherit extraModules;
-        overlays = sharedOverlays;
       };
 
       nixosConfigurations."kazuma" = nixosSystem {
         configuration = ./hosts/kazuma;
         inherit extraModules;
-        overlays = sharedOverlays;
       };
 
       nixosConfigurations."emilia" = nixosSystem {
         system = "aarch64-linux";
         configuration = ./hosts/emilia;
         inherit extraModules;
-        overlays = sharedOverlays;
       };
 
       nixosConfigurations."rem" = nixosSystem {
         system = "aarch64-linux";
         configuration = ./hosts/rem;
         inherit extraModules;
-        overlays = sharedOverlays;
       };
 
       nixosConfigurations."ram" = nixosSystem {
         system = "aarch64-linux";
         configuration = ./hosts/ram;
         inherit extraModules;
-        overlays = sharedOverlays;
       };
 
       nixosConfigurations."megumin" = nixosSystem {
         configuration = ./hosts/megumin;
         inherit extraModules;
-        overlays = sharedOverlays;
       };
 
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
