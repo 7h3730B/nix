@@ -50,7 +50,7 @@ in
   config = mkIf cfg.enable {
     services.openssh = {
       inherit (cfg) enable ports passwordAuthentication;
-      # kbdInteractiveAuthentication = false;
+      kbdInteractiveAuthentication = false;
       allowSFTP = false;
       forwardX11 = false;
       permitRootLogin = "prohibit-password";
