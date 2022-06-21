@@ -38,7 +38,7 @@ in
   config = mkIf cfg.enable {
     age.secrets.hostapdConf = {
       file = ../../secrets/hostapd.conf;
-    #   owner = "hostapd";
+      #   owner = "hostapd";
     };
     environment.systemPackages = [ pkgs.hostapd ];
     services.udev.packages = optional (cfg.countryCode != null) [ pkgs.crda ];
@@ -47,7 +47,7 @@ in
     networking.nat.enable = true;
     networking.nat.internalInterfaces = [ "${cfg.interface}" ];
 
-    networking.interfaces."${cfg.interface}".ipv4.addresses = [ { address = "192.168.0.1"; prefixLength = 24; }];
+    networking.interfaces."${cfg.interface}".ipv4.addresses = [{ address = "192.168.0.1"; prefixLength = 24; }];
 
     networking.firewall.interfaces."${cfg.interface}" = {
       allowedUDPPorts = [ 53 67 ];

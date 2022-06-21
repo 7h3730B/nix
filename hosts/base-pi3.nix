@@ -21,6 +21,7 @@
   environment.systemPackages = with pkgs; [
     libraspberrypi
   ];
+  # enables wlan0 interface https://github.com/NixOS/nixpkgs/issues/115652#issuecomment-1034075695
   hardware.enableRedistributableFirmware = false;
   hardware.firmware = [ pkgs.raspberrypiWirelessFirmware ];
 }
