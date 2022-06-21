@@ -41,6 +41,10 @@ in
     service = true;
   };
 
+  nix.extraOptions = ''
+    builders-use-substitutes = true
+  '';
+
   # compile for arm
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 

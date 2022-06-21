@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.monitoring;
-in {
+in
+{
   imports = [
     ./grafana.nix
     ./prometheus.nix
@@ -40,5 +41,5 @@ in {
     };
   };
 
-  config = mkIf cfg.enable {};
+  config = mkIf cfg.enable { };
 }

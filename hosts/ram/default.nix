@@ -19,6 +19,7 @@ in
       ./hardware-configuration.nix
       ./znc.nix
       ./spotifyd.nix
+      ./hostapd.nix
     ];
 
 
@@ -42,6 +43,8 @@ in
   };
 
   spotifyd.enable = true;
+
+  hostapd.enable = true;
 
   tailscale = {
     enable = true;

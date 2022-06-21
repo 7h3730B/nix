@@ -21,4 +21,6 @@
   environment.systemPackages = with pkgs; [
     libraspberrypi
   ];
+  hardware.enableRedistributableFirmware = false;
+  hardware.firmware = [ pkgs.raspberrypiWirelessFirmware ];
 }

@@ -3,7 +3,8 @@ with lib;
 let
   cfg_mon = config.monitoring;
   cfg = cfg_mon.grafana;
-in {
+in
+{
   config = mkIf cfg_mon.enable {
     # TODO: use sockets instad of http, add datasource prometheus, add panels, add adminPasswordFile, add Notifiers
     services.grafana = {
@@ -36,7 +37,7 @@ in {
     services.nginx = {
       enable = cfg_mon.enable;
 
-      recommendedOptimisation = true;    
+      recommendedOptimisation = true;
       recommendedProxySettings = true;
 
       virtualHosts."${config.services.grafana.domain}" = {

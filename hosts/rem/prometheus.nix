@@ -3,7 +3,8 @@ with lib;
 let
   cfg_mon = config.monitoring;
   cfg = cfg_mon.prometheus;
-in {
+in
+{
   config = mkIf cfg_mon.enable {
     services.prometheus = {
       enable = cfg_mon.enable;

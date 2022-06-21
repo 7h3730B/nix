@@ -43,13 +43,6 @@ in
     grafana.domain = "100.74.11.78";
   };
 
-  # age.secrets.wpaSupplicantConf = {
-  #   file = ../../secrets/wpa_supplicant.conf;
-  #   path = "/etc/wpa_supplicant.conf";
-  # };
-  # hardware.enableRedistributableFirmware = true;
-  # networking.wireless.enable = true;
-
   tailscale = {
     enable = true;
     service = true;
