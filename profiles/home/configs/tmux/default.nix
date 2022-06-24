@@ -34,6 +34,21 @@
       bind -n M-j select-pane -D 
       bind -n M-k select-pane -U
       bind -n M-l select-pane -R
+
+      # resize panes more easily
+      bind < resize-pane -L 10
+      bind > resize-pane -R 10
+      bind - resize-pane -D 10
+      bind + resize-pane -U 10
+
+      bind-key J resize-pane -D 5
+      bind-key K resize-pane -U 5
+      bind-key H resize-pane -L 5
+      bind-key L resize-pane -R 5
+
+      # Shift arrow to switch windows
+      bind -n S-Left  previous-window
+      bind -n S-Right next-window
     '';
   };
 }

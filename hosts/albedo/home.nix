@@ -41,6 +41,8 @@ in
       dunst
       dmenu
       feh
+
+      nodejs
     ];
 
     home.sessionVariables = {
