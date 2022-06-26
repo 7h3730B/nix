@@ -41,6 +41,8 @@
       colorscheme palenight
 
       " Position in code
+      " shows the real line number aswell
+      set number
       set rnu
       set ruler
 
