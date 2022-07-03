@@ -2,7 +2,19 @@
 , config
 , lib
 , ...
-}: {
+}:
+let
+  vim-zettel =  pkgs.vimUtils.buildVimPlugin {
+    name = "vim-zettel";
+    src = pkgs.fetchFromGitHub {
+      owner = "michal-h21";
+      repo = "vim-zettel";
+      rev = "86a5009a0009ee407c189266edcf9a1e9ee618df";
+      sha256 = "mmS++H3xyhuiA16NWbDiGQfoTzEqSK9PMTFhdy+3jDo=";
+    };
+  };
+in
+{
   programs.vim = {
     enable = true;
 
@@ -24,7 +36,10 @@
       rust-vim
       nerdtree
       coc-nvim
+      vimwiki
       vim-nix
+
+      vim-zettel
     ];
 
     extraConfig = ''
@@ -334,6 +349,37 @@
             \   'gitbranch': 'gitbranch#name'
             \ },
             \ }
+
+      " --------------- vimwiki ------------------
+
+      let g:vimwiki_syntax = 'markdown'
+      let g:vimwiki_ext = '.md'
+      let g:vimwiki_automatic_nested_syntaxes = 1
+      let g:vimwiki_links_space_char = '_'
+      let g:vimwiki_list = [
+            \ { 'name': '/', 'path': '~/vimwiki/' },
+            \ { 'name': 'fleeting', 'path': '~/vimwiki/fleeting' },
+            \ { 'name': 'permanent', 'path': '~/vimwiki/permanent' },
+            \ ]
+
+      " --------------- vim-zettel ------------------
+
+      let g:zettel_random_chars=16
+      let g:zettel_date_format = "%Y-%m-%d"
+      let g:zettel_format = "%y%m%d-%H:%M-%title"
+      let g:zettel_default_mappings = 0
+      let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
+      let g:zettel_options = [{"template": "~/vimwiki/template.tpl", "front_matter" : [["taxonomies", ""]]}]
+      augroup filetype_vimwiki
+        autocmd!
+        autocmd FileType vimwiki nmap <leader>zn :ZettelNew
+        autocmd FileType vimwiki nmap <leader>zN :ZettelNewSelectedMap
+        autocmd FileType vimwiki nmap <leader>zs :ZettelSearchMap
+        autocmd FileType vimwiki nmap <leader>zo :ZettelOpen<CR>
+        autocmd FileType vimwiki nmap <leader>zb :ZettelBackLinks<CR>
+        autocmd FileType vimwiki nmap <leader>zf :AddVimFootnote
+        autocmd FileType vimwiki nmap <leader>zr :ReturnFromFootnote
+      augroup END
 
       " --------------- autocmds ------------------
 
