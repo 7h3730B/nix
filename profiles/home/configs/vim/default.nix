@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  vim-zettel =  pkgs.vimUtils.buildVimPlugin {
+  vim-zettel = pkgs.vimUtils.buildVimPlugin {
     name = "vim-zettel";
     src = pkgs.fetchFromGitHub {
       owner = "michal-h21";

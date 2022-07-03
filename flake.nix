@@ -134,6 +134,11 @@
         inherit extraModules;
       };
 
+      nixosConfigurations."eris" = nixosSystem {
+        configuration = ./hosts/eris;
+        inherit extraModules;
+      };
+
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
       deploy = {
         magicRollback = false;

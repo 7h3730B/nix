@@ -2,11 +2,11 @@
 , config
 , lib
 , ...
-}: {
+}: with lib; {
   programs.git = {
     enable = true;
-    userName = "7h3730b";
-    userEmail = "56200898+7h3730B@users.noreply.github.com";
+    userName = mkDefault "7h3730b";
+    userEmail = mkDefault "56200898+7h3730B@users.noreply.github.com";
 
     aliases = {
       st = "status -s";

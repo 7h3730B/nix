@@ -24,6 +24,10 @@ Ram is a raspberry pi and should be there to monitor all other machines (also ta
 
 Megumin is my wsl2 config
 
+### Eris
+
+Eris is my wsl2 config for work
+
 ### Aqua
 
 Aqua is a "hardened" server, and a pretty cheap VPS in the cloud (Oracle free tier 1G server). It only purpose is to have a public facing ssh and connect to my tailscale network.
