@@ -4,22 +4,12 @@
 , ...
 }:
 let
-  vim-zettel = pkgs.vimUtils.buildVimPlugin {
-    name = "vim-zettel";
-    src = pkgs.fetchFromGitHub {
-      owner = "michal-h21";
-      repo = "vim-zettel";
-      rev = "86a5009a0009ee407c189266edcf9a1e9ee618df";
-      sha256 = "mmS++H3xyhuiA16NWbDiGQfoTzEqSK9PMTFhdy+3jDo=";
-    };
-  };
 in
 {
   programs.vim = {
     enable = true;
 
     plugins = with pkgs.vimPlugins; [
-      fzf-vim
       vim-better-whitespace
       vim-highlightedyank
       vim-colorschemes
@@ -36,10 +26,8 @@ in
       rust-vim
       nerdtree
       coc-nvim
-      vimwiki
       vim-nix
-
-      vim-zettel
+      fzf-vim
     ];
 
     extraConfig = ''
@@ -350,36 +338,43 @@ in
             \ },
             \ }
 
-      " --------------- vimwiki ------------------
+      " --------------- note taking ------------------
 
-      let g:vimwiki_syntax = 'markdown'
-      let g:vimwiki_ext = '.md'
-      let g:vimwiki_automatic_nested_syntaxes = 1
-      let g:vimwiki_links_space_char = '_'
-      let g:vimwiki_list = [
-            \ { 'name': '/', 'path': '~/vimwiki/' },
-            \ { 'name': 'fleeting', 'path': '~/vimwiki/fleeting' },
-            \ { 'name': 'permanent', 'path': '~/vimwiki/permanent' },
-            \ ]
+      " notes dir location
+      let g:notes = "~/vimwiki/"
 
-      " --------------- vim-zettel ------------------
+      " Index page
+      nnoremap <leader>ni :execute ":e" notes . "index.md"<CR>":cd" notes<CR>
+      " use ripgrep
+      if executable('rg')
+          set grepprg=rg\ --color=never\ --vimgrep
+      endif
+      " search for text with ripgrep
+      command! -nargs=1 Ngrep grep "<args>" -g "*.md" notes
+      nnoremap <leader>nf :Ngrep
+      " sidebar with rg
+      command! Vlist botright vertical copen | vertical resize 50
+      nnoremap <leader>nv :Vlist<CR>
+      " new note
+      command! -nargs=1 NewZettel :execute ":e" notes . strftime("%Y%m%d%H%M") . "-<args>.md"
+      nnoremap <leader>nn :NewZettel
+      " new fleeting note
+      command! -nargs=1 NewFleetingZettel :execute ":e" notes . "fleeting/" . strftime("%Y%m%d%H%M") . "-<args>.md"
+      nnoremap <leader>nnf :NewFleetingZettel
+      " new project note
+      command! -nargs=1 NewProjectZettel :execute ":e" notes . "project/" . strftime("%Y%m%d%H%M") . "-<args>.md"
+      nnoremap <leader>nnp :NewProjectZettel
+      " add link
+      function! HandleFZF(file)
+          let filename = fnameescape(a:file)
+          let filename_wo_timestamp = fnameescape(fnamemodify(a:file, ":t:s/^[0-9]*-//"))
+          " Insert the markdown link to the file in the current buffer
+          let mdlink = "[ ".filename_wo_timestamp."  ]( ".filename."  )"
+          put=mdlink
+      endfunction
 
-      let g:zettel_random_chars=16
-      let g:zettel_date_format = "%Y-%m-%d"
-      let g:zettel_format = "%y%m%d-%H:%M-%title"
-      let g:zettel_default_mappings = 0
-      let g:zettel_fzf_command = "rg --column --line-number --ignore-case --no-heading --color=always "
-      let g:zettel_options = [{"template": "~/vimwiki/template.tpl", "front_matter" : [["taxonomies", ""]]}]
-      augroup filetype_vimwiki
-        autocmd!
-        autocmd FileType vimwiki nmap <leader>zn :ZettelNew
-        autocmd FileType vimwiki nmap <leader>zN :ZettelNewSelectedMap
-        autocmd FileType vimwiki nmap <leader>zs :ZettelSearchMap
-        autocmd FileType vimwiki nmap <leader>zo :ZettelOpen<CR>
-        autocmd FileType vimwiki nmap <leader>zb :ZettelBackLinks<CR>
-        autocmd FileType vimwiki nmap <leader>zf :AddVimFootnote
-        autocmd FileType vimwiki nmap <leader>zr :ReturnFromFootnote
-      augroup END
+      command! -nargs=1 HandleFZF :call HandleFZF(<f-args>)
+      nnoremap <leader>nf :HandleFZF
 
       " --------------- autocmds ------------------
 

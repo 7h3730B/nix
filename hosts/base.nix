@@ -70,6 +70,7 @@
     file
     git
     vim
+    ripgrep
 
     man-db
     man-pages
