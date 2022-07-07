@@ -20,6 +20,8 @@ in
       ./znc.nix
       ./spotifyd.nix
       ./hostapd.nix
+      ./paperless.nix
+      ./shiori.nix
     ];
 
 
@@ -46,6 +48,16 @@ in
 
   hostapd.enable = true;
 
+  paperless = {
+    enable = true;
+    domain = "docs.int.teo.beer";
+  };
+
+  shiori = {
+    enable = true;
+    domain = "read.int.teo.beer";
+  };
+
   tailscale = {
     enable = true;
     service = true;
@@ -67,6 +79,7 @@ in
   };
 
   documentation.enable = false;
-  environment.noXlibs = true;
+  # Needs to be enabled, 'cause of some depndencies of paperless'
+  environment.noXlibs = false;
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
 }

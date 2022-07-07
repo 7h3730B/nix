@@ -17,6 +17,7 @@ in
     [
       ../base.nix
       ./hardware-configuration.nix
+      ./calibre-web.nix
     ];
 
   base = {
@@ -41,6 +42,11 @@ in
   tailscale = {
     enable = true;
     service = true;
+  };
+
+  calibre-web = {
+    enable = true;
+    domain = "books.int.teo.beer";
   };
 
   boot.loader.grub = {

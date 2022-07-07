@@ -40,7 +40,7 @@ in
 
   monitoring = {
     enable = true;
-    grafana.domain = "100.74.11.78";
+    grafana.domain = "grafana.int.teo.beer";
   };
 
   tailscale = {

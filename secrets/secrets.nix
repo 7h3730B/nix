@@ -32,4 +32,6 @@ in
   "grafanapw.txt".publicKeys = keysForSystems [ "albedo" "rem" ];
 
   "hostapd.conf".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
+
+  "paperless.txt".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
 }

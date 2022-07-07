@@ -40,6 +40,10 @@ in
       recommendedOptimisation = true;
       recommendedProxySettings = true;
 
+      virtualHosts."0.0.0.0" = {
+        default = true;
+        extraConfig = "return 301 https://teo.beer;";
+      };
       virtualHosts."${config.services.grafana.domain}" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
