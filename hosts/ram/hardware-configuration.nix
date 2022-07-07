@@ -22,6 +22,13 @@
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/ssd" =
+    {
+      device = "/dev/sda1";
+      fsType = "ext4";
+      options = [ "defaults" ];
+    };
+
   swapDevices =
     [{ device = "/swapfile"; size = 1024; }];
 }

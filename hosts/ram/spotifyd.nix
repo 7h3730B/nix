@@ -8,6 +8,7 @@ in
     enable = mkEnableOption "tanya nginx server";
   };
 
+  // TODO: add a service which restarts spotifyd every 1-2 days
   config = mkIf cfg.enable {
     sound.enable = true;
     age.secrets.spotifyPw = {
