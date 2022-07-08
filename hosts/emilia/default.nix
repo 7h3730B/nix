@@ -70,5 +70,5 @@ in
   };
 
   documentation.enable = false;
-  environment.noXlibs = true;
+  environment.noXlibs = false;
 }

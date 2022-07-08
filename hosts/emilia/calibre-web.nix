@@ -33,10 +33,15 @@ in
     services.calibre-web = {
       inherit (cfg) enable user group;
       listen = { inherit (cfg.listen) ip port; };
+      options = {
+        calibreLibrary = "/var/lib/calibre-web/books";
+        enableBookConversion = true;
+        enableBookUploading = true;
+      };
     };
 
     services.nginx = {
-      inherit (cfg) enable;
+     inherit (cfg) enable;
 
       recommendedOptimisation = true;
       recommendedProxySettings = true;
@@ -48,7 +53,6 @@ in
       virtualHosts."${cfg.domain}" = {
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.calibre-web.listen.port}";
-          proxyWebsockets = true;
         };
       };
     };
