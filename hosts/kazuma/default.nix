@@ -19,6 +19,7 @@ in
       ../base.nix
       ./hardware-configuration.nix
       ./ark-server.nix
+      ./assetto-corsa.nix
     ];
 
   base = {
@@ -51,6 +52,21 @@ in
       TheIsland?listen?noTributeDownloads=true?PreventDownloadSurvivors=true?PreventDownloadItems=true?PreventDownloadDinos=true?AutoSavePeriodMinutes=5?alwaysNotifyPlayerJoined=true?alwaysNotifyPlayerLeft=true?SessionName=Pumper?RCONEnabled=False?MaxPlayers=5 -NoBattlEye -server -crossplay -log
     '';
   };
+
+# TODO: find out why steamcmd failes with: at 0x2?
+# the complete folder and config needs currently 777 permission for the container to be able to read, fix this!!!
+#  age.secrets.assettoSettings = {
+#    file = ../../secrets/config.yml;
+#    path = "${config.assetto-corsa.dataDir}/config.yml";
+#    mode = "0777";
+#    symlink = false;
+#    # owner = "${config.assetto-corsa.user}";
+#  };
+#  assetto-corsa = {
+#    enable = true;
+#    openFirewall = true;
+#    configFile = config.age.secrets.assettoSettings.path;
+#  };
 
   boot.loader.grub = {
     enable = true;

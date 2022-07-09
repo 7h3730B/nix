@@ -29,6 +29,8 @@ in
 
   "ark-settings.ini".publicKeys = keysForSystems [ "albedo" "kazuma" ];
 
+  "config.yml".publicKeys = keysForSystems [ "albedo" "megumin" "kazuma" ];
+
   "grafanapw.txt".publicKeys = keysForSystems [ "albedo" "rem" ];
 
   "hostapd.conf".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
