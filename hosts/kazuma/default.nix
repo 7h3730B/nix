@@ -53,20 +53,39 @@ in
     '';
   };
 
-# TODO: find out why steamcmd failes with: at 0x2?
-# the complete folder and config needs currently 777 permission for the container to be able to read, fix this!!!
-#  age.secrets.assettoSettings = {
-#    file = ../../secrets/config.yml;
-#    path = "${config.assetto-corsa.dataDir}/config.yml";
-#    mode = "0777";
-#    symlink = false;
-#    # owner = "${config.assetto-corsa.user}";
-#  };
-#  assetto-corsa = {
-#    enable = true;
-#    openFirewall = true;
-#    configFile = config.age.secrets.assettoSettings.path;
-#  };
+  # Find a better they tahn to hardcode uid
+  age.secrets.assettoSettings = {
+    file = ../../secrets/config.yml;
+    path = "${config.assetto-corsa.dataDir}/config.yml";
+    owner = "1000";
+    mode = "0777";
+    symlink = false;
+  };
+  age.secrets.assettoServers = {
+    file = ../../secrets/servers.yml;
+    path = "${config.assetto-corsa.dataDir}/servers.yml";
+    mode = "0777";
+    owner = "1000";
+    symlink = false;
+  };
+  age.secrets.assettoLicense = {
+    file = ../../secrets/ACSM.License;
+    path = "${config.assetto-corsa.dataDir}/ACSM.License";
+    mode = "0777";
+    owner = "1000";
+    symlink = false;
+  };
+  age.secrets.dockerToken = {
+    file = ../../secrets/docker_token;
+  };
+  assetto-corsa = {
+    enable = true;
+    openFirewall = true;
+    configFile = config.age.secrets.assettoSettings.path;
+    serversFile = config.age.secrets.assettoServers.path;
+    licenseFile = config.age.secrets.assettoLicense.path;
+    dockerTokenFile = config.age.secrets.dockerToken.path;
+  };
 
   boot.loader.grub = {
     enable = true;

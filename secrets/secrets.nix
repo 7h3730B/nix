@@ -31,6 +31,12 @@ in
 
   "config.yml".publicKeys = keysForSystems [ "albedo" "megumin" "kazuma" ];
 
+  "servers.yml".publicKeys = keysForSystems [ "albedo" "megumin" "kazuma" ];
+
+  "ACSM.License".publicKeys = keysForSystems [ "albedo" "megumin" "kazuma" ];
+
+  "docker_token".publicKeys = keysForSystems [ "albedo" "megumin" "kazuma" ];
+
   "grafanapw.txt".publicKeys = keysForSystems [ "albedo" "rem" ];
 
   "hostapd.conf".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
