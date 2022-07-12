@@ -18,6 +18,7 @@ in
       ../base.nix
       ./hardware-configuration.nix
       ./calibre-web.nix
+      ./gitea.nix
     ];
 
   base = {
@@ -47,6 +48,11 @@ in
   calibre-web = {
     enable = true;
     domain = "books.int.teo.beer";
+  };
+
+  gitea = {
+    enable = true;
+    domain = "git.int.teo.beer";
   };
 
   boot.loader.grub = {
