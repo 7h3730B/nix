@@ -14,9 +14,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    security.acme = {
-      defaults.email = "teo.sb@proton.me";
-      acceptTerms = true;
+    reverse-proxy = {
+      enable = true;
+      openFirewall = true;
     };
     services.nginx =
       let
@@ -28,13 +28,6 @@ in
         };
       in
       {
-        inherit (cfg) enable;
-
-        recommendedGzipSettings = true;
-        recommendedOptimisation = true;
-        recommendedProxySettings = true;
-        recommendedTlsSettings = true;
-
         virtualHosts = {
           "${cfg.domain}" = {
             default = true;
@@ -58,7 +51,5 @@ in
           };
         };
       };
-
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
   };
 }

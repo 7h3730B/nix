@@ -45,6 +45,11 @@ in
     service = true;
   };
 
+  reverse-proxy = {
+    enable = true;
+    openFirewall = false;
+  };
+
   calibre-web = {
     enable = true;
     domain = "books.int.teo.beer";

@@ -48,6 +48,11 @@ in
 
   hostapd.enable = true;
 
+  reverse-proxy = {
+    enable = true;
+    openFirewall = false;
+  };
+
   paperless = {
     enable = true;
     domain = "docs.int.teo.beer";

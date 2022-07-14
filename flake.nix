@@ -43,6 +43,7 @@
         ./modules/sshd.nix
         ./modules/tailscale.nix
         ./modules/xrdp.nix
+        ./modules/reverse-proxy.nix
       ];
 
       sharedOverlays = [

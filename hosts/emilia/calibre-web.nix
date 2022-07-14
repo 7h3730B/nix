@@ -41,11 +41,6 @@ in
     };
 
     services.nginx = {
-     inherit (cfg) enable;
-
-      recommendedOptimisation = true;
-      recommendedProxySettings = true;
-
       virtualHosts."0.0.0.0" = {
         default = true;
         extraConfig = "return 301 https://teo.beer;";

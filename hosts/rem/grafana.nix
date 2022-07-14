@@ -34,12 +34,11 @@ in
       };
     };
 
-    services.nginx = {
+    reverse-proxy = {
       enable = cfg_mon.enable;
-
-      recommendedOptimisation = true;
-      recommendedProxySettings = true;
-
+      openFirewall = false;
+    };
+    services.nginx = {
       virtualHosts."0.0.0.0" = {
         default = true;
         extraConfig = "return 301 https://teo.beer;";
