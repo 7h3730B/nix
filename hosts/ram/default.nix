@@ -22,6 +22,7 @@ in
       ./hostapd.nix
       ./paperless.nix
       ./shiori.nix
+      ./taskserver.nix
     ];
 
 
@@ -61,6 +62,11 @@ in
   shiori = {
     enable = true;
     domain = "read.int.teo.beer";
+  };
+
+  taskserver = {
+    enable = true;
+    domain = "tasks.int.teo.beer";
   };
 
   tailscale = {

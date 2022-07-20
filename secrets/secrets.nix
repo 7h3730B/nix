@@ -42,4 +42,8 @@ in
   "hostapd.conf".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
 
   "paperless.txt".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
+
+  "github_token".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
+
+  "gitea_token".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
 }

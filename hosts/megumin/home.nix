@@ -18,6 +18,7 @@ in
     imports = [
       ../../profiles/home/full-graphical.nix
       ../../profiles/home/configs/ssh
+      ../../profiles/home/configs/taskwarrior
     ];
 
     home.packages = with pkgs; [
