@@ -46,4 +46,9 @@ in
   "github_token".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
 
   "gitea_token".publicKeys = keysForSystems [ "albedo" "megumin" "ram" ];
+
+  # Taskwarrior
+  "public.cert".publicKeys = keysForSystems [ "albedo" "megumin" ];
+  "private.key".publicKeys = keysForSystems [ "albedo" "megumin" ];
+  "ca.cert".publicKeys = keysForSystems [ "albedo" "megumin" ];
 }
