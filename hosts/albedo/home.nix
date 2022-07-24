@@ -19,10 +19,27 @@ in
   #   owner = "${username}";
   # };
 
+  age.secrets.publicCert = {
+    file = ../../secrets/public.cert;
+    path = "/home/${username}/tasks/keys/public.cert";
+    owner = "${username}";
+  };
+  age.secrets.privateKey = {
+    file = ../../secrets/private.key;
+    path = "/home/${username}/tasks/keys/private.key";
+    owner = "${username}";
+  };
+  age.secrets.caCert = {
+    file = ../../secrets/ca.cert;
+    path = "/home/${username}/tasks/keys/ca.cert";
+    owner = "${username}";
+  };
+
   home-manager.users."${username}" = {
     imports = [
       ../../profiles/home/full-graphical.nix
       ../../profiles/home/configs/ssh
+      ../../profiles/home/configs/taskwarrior
     ];
 
     home.packages = with pkgs; [
