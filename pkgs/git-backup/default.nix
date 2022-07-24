@@ -5,8 +5,10 @@ buildPythonPackage rec {
   pname = "git-backup";
   version = "0.1";
 
-  src = ./git-backup.py;
+  src = ./src;
 
+  dontUnpack = true;
+  dontBuild = true;
   doCheck = false;
 
   buildInputs = [  ];
